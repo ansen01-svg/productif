@@ -1,27 +1,15 @@
 import Form from "../../components/form";
 import { Box } from "@mui/material";
-import { useMemo } from "react";
 
-const FormHolder = (props) => {
-  const { fields } = props;
-
-  const { width, height, propFields } = useMemo(() => {
-    const props = {
-      width: "100%",
-      height: "100%",
-      propFields: fields,
-    };
-    return props;
-  }, [fields]);
-
+const FormHolder = ({ type }) => {
   return (
     <Box
       sx={{
         width: "100%",
-        height: "73%",
+        height: "74%",
       }}
     >
-      <Form width={width} height={height} fields={propFields} />
+      <Form type={type} />
     </Box>
   );
 };

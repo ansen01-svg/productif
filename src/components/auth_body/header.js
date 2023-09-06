@@ -8,7 +8,7 @@ const Header = ({ heading }) => {
     <Box
       sx={{
         width: "100%",
-        height: "15%",
+        height: "18%",
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",

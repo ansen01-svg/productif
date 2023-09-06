@@ -23,7 +23,7 @@ const Register = () => {
         footerText={registerFooterText}
         footerLink={registerFooterLink}
         footerLinkText={registerFooterLinkText}
-        fields="3"
+        type="register"
       />
     </Container>
   );
