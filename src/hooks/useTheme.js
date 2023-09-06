@@ -1,8 +1,7 @@
 import { createTheme } from "@mui/material/styles";
-import { useMemo } from "react";
 
 const useTheme = (palette) => {
-  const theme = useMemo(() => {
+  const theme = () => {
     const muiTheme = createTheme({
       palette: palette,
       typography: {
@@ -67,7 +66,7 @@ const useTheme = (palette) => {
     });
 
     return muiTheme;
-  }, [palette]);
+  };
 
   return theme;
 };

@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   mode: localStorage.getItem("mode") || "light",
   user: null,
+  tasks: [],
+  important: [],
 };
 
 export const appSlice = createSlice({
