@@ -1,67 +1,68 @@
 import { useEffect, memo } from "react";
-import { useLogin, useRegister } from "../.././hooks";
-import {
-  initialLoginCredentials,
-  initialRegisterCredentials,
-} from "../.././utils/objects";
+import { useFormSubmit } from "../.././hooks";
+import { initialCredentials } from "../.././utils/objects";
 import { useForm } from "react-hook-form";
-import LoginFormHolder from "./login_form_holder";
-import RegisterFormHolder from "./register_form_holder";
+import FieldHolder from "./field_holder";
+import { Box } from "@mui/material";
+import MessageHolder from "./message_holder";
+import ButtonHolder from "./button_holder";
 
-const Form = memo((props) => {
-  const { width, height, fields } = props;
+const Form = memo(({ type }) => {
+  const loginPage = type === "login";
 
-  const { errorMessage: loginErrorMessage, handleLogin } = useLogin();
-  const {
-    message: registerMessage,
-    errorMessage: registerErrorMessage,
-    handleRegister,
-  } = useRegister();
-
-  const loginPage = +fields !== 3;
-  const initialState = loginPage
-    ? initialLoginCredentials
-    : initialRegisterCredentials;
+  const { errorMessage, handleFormSubmit } = useFormSubmit(type);
 
   const { register, handleSubmit, reset, setFocus, watch } = useForm({
-    defaultValues: initialState,
+    defaultValues: initialCredentials,
   });
-
-  const handleFormSubmit = loginPage ? handleLogin : handleRegister;
 
   useEffect(() => {
     setFocus("email");
   }, [setFocus]);
 
-  if (loginPage) {
-    return (
-      <LoginFormHolder
-        width={width}
-        height={height}
-        handleFormSubmit={handleFormSubmit}
-        handleSubmit={handleSubmit}
-        register={register}
-        reset={reset}
-        initialState={initialState}
-        loginErrorMessage={loginErrorMessage}
-        watch={watch}
-      />
-    );
-  }
+  const watchFields = watch();
+  const disable = !watchFields.email || !watchFields.password;
 
   return (
-    <RegisterFormHolder
-      width={width}
-      height={height}
-      handleFormSubmit={handleFormSubmit}
-      handleSubmit={handleSubmit}
-      register={register}
-      reset={reset}
-      initialState={initialState}
-      registerMessage={registerMessage}
-      registerErrorMessage={registerErrorMessage}
-      watch={watch}
-    />
+    <Box
+      component="form"
+      sx={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "20px",
+      }}
+      onSubmit={handleSubmit((data) =>
+        handleFormSubmit(data, reset, initialCredentials)
+      )}
+    >
+      <FieldHolder
+        id="email"
+        name="email"
+        type="email"
+        label="Email"
+        variant="outlined"
+        register={register}
+      />
+      <FieldHolder
+        id="password"
+        name="password"
+        type="password"
+        label="Password"
+        variant="outlined"
+        register={register}
+      />
+      {errorMessage && (
+        <MessageHolder message={errorMessage} severity={"error"} />
+      )}
+      <ButtonHolder
+        buttonTitle={loginPage ? "sign in" : "sign up"}
+        disable={disable}
+      />
+    </Box>
   );
 });
 

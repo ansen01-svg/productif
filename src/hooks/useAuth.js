@@ -1,7 +1,7 @@
 const useAuth = () => {
-  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
-  return user ? user : null;
+  return token ? token : null;
 };
 
 export default useAuth;

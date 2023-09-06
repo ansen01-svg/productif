@@ -23,7 +23,7 @@ const LoginPage = () => {
         footerText={loginFooterText}
         footerLink={loginFooterLink}
         footerLinkText={loginFooterLinkText}
-        fields="2"
+        type="login"
       />
     </Container>
   );

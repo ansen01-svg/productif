@@ -1,12 +1,6 @@
-const initialRegisterCredentials = {
-  email: "",
-  username: "",
-  password: "",
-};
-
-const initialLoginCredentials = {
+const initialCredentials = {
   email: "",
   password: "",
 };
 
-export { initialRegisterCredentials, initialLoginCredentials };
+export { initialCredentials };
