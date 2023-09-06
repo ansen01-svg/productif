@@ -22,15 +22,15 @@ const useTheme = (palette) => {
         fontWeight: "600",
       },
       h2: {
-        fontSize: 25,
-        fontWeight: "600",
-      },
-      h3: {
         fontSize: 20,
         fontWeight: "600",
       },
+      h3: {
+        fontSize: 18,
+        fontWeight: "600",
+      },
       h4: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: "600",
       },
     },

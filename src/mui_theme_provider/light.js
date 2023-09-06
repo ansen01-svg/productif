@@ -1,5 +1,9 @@
 const lightPalette = {
   mode: "light",
+  primary: {
+    light: "#42a5f5",
+    main: "#fff",
+  },
   background: {
     main: "#fff",
   },
