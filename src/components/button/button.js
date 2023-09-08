@@ -9,7 +9,6 @@ const Button = (props) => {
     onClick,
     type,
     disabled,
-    color,
     bgColor,
     padding,
     role,
@@ -17,39 +16,36 @@ const Button = (props) => {
     startIcon,
     endIcon,
     textTransform,
-    borderBottomLeftRadius,
-    borderBottomRightRadius,
-    borderTopLeftRadius,
-    borderTopRightRadius,
+    borderRadius,
     boxShadow,
     minWidth,
     hoverColor,
     hoverShadow,
+    color,
   } = props;
+
+  const buttonStyles = {
+    width: width,
+    minWidth: minWidth,
+    height: height,
+    bgcolor: bgColor,
+    padding: padding,
+    boxShadow: boxShadow,
+    textTransform: textTransform || "uppercase",
+    borderRadius: borderRadius,
+    color: color,
+    "&.MuiButtonBase-root:hover": {
+      bgcolor: hoverColor,
+      boxShadow: hoverShadow,
+    },
+  };
 
   return (
     <MuiButton
       role={role}
       variant={variant}
-      color={color}
       size={size}
-      sx={{
-        width: width,
-        minWidth: minWidth,
-        height: height,
-        bgcolor: bgColor,
-        padding: padding,
-        boxShadow: boxShadow,
-        textTransform: textTransform || "uppercase",
-        borderTopRightRadius: borderTopRightRadius,
-        borderBottomRightRadius: borderBottomRightRadius,
-        borderTopLeftRadius: borderTopLeftRadius,
-        borderBottomLeftRadius: borderBottomLeftRadius,
-        "&.MuiButtonBase-root:hover": {
-          bgcolor: hoverColor,
-          boxShadow: hoverShadow,
-        },
-      }}
+      sx={buttonStyles}
       onClick={onClick}
       type={type}
       disabled={disabled}

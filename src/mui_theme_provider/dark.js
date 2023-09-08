@@ -18,6 +18,12 @@ const darkPalette = {
     hover: "#6b6c6d",
     border: "#89898a",
   },
+  searchInputColor: {
+    main: "#fff",
+    buttonHover: "#fff",
+    // closeBtnTextColor: "#fff",
+    contrastText: "#000",
+  },
 };
 
 export default darkPalette;

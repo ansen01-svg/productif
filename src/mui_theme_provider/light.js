@@ -12,6 +12,12 @@ const lightPalette = {
     hover: "rgba(57,76,96,.15)",
     shadow: "rgba(64,87,109,.07)",
   },
+  searchInputColor: {
+    main: "#fff",
+    buttonHover: "#fff",
+    // closeBtnTextColor: "gray",
+    contrastText: "#000",
+  },
 };
 
 export default lightPalette;
