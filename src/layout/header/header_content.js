@@ -1,14 +1,12 @@
 import { Toolbar, Popover } from "@mui/material";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import { useState, useEffect } from "react";
 import MenuAndLogoHolder from "./menu_and_logo_holder";
 import UserHolder from "./user_holder";
 import PopoverContent from "./popover";
+import SearchboxHolder from "./searchbox_holder";
 
 const Content = (props) => {
   const { toggleMobileSidebar, setIsDesktopSidebarOpen } = props;
-
-  const mobileScreen = useWindowWidth();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -23,25 +21,22 @@ const Content = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  useEffect(() => {
-    if (mobileScreen) {
-      setAnchorEl(null);
-    }
-  }, [mobileScreen]);
-
   return (
     <Toolbar
+      variant="dense"
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
+        gap: "20px",
       }}
     >
       <MenuAndLogoHolder
         toggleMobileSidebar={toggleMobileSidebar}
         setIsDesktopSidebarOpen={setIsDesktopSidebarOpen}
       />
-      {!mobileScreen && <UserHolder id={id} handleClick={handleClick} />}
+      <SearchboxHolder />
+      <UserHolder id={id} handleClick={handleClick} />
       <Popover
         id={id}
         open={open}
@@ -53,7 +48,7 @@ const Content = (props) => {
         }}
         sx={{
           "& .MuiPaper-root": {
-            width: "20vw",
+            width: "273px",
           },
         }}
       >

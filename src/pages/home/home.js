@@ -6,7 +6,8 @@ const HomePage = () => {
     <Box
       sx={{
         flexGrow: 1,
-        height: "calc(100vh - 64px)",
+        height: "calc(100vh - 48px)",
+        bgcolor: "effects.background",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

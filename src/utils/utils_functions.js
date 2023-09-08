@@ -1,4 +1,4 @@
-import { bottomNavigation } from "./arrays";
+import { navigationItems } from "./arrays";
 import API from "./api_endpoint";
 
 const storeInSessionStorage = (key, value) =>
@@ -24,7 +24,7 @@ const clearFromStorages = () => {
 const getPageIndex = (pageTitle) => {
   if (pageTitle === null) return 0;
 
-  const currentPage = bottomNavigation.find((page) => page.title === pageTitle);
+  const currentPage = navigationItems.find((page) => page.title === pageTitle);
   return currentPage.id;
 };
 

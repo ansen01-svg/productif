@@ -1,7 +1,5 @@
 import { Box, IconButton } from "@mui/material";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
-import logoImage from "../../assets/icon.png";
-import ImageHolder from "../../components/image_holder";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { useEffect, useRef } from "react";
 import TextHolder from "../../components/text_holder";
@@ -10,19 +8,19 @@ import { logo } from "../../utils/variables";
 const MenuAndLogoHolder = (props) => {
   const { toggleMobileSidebar, setIsDesktopSidebarOpen } = props;
 
-  const mobileScreen = useWindowWidth();
+  const { desktopScreen } = useWindowWidth();
 
   let handleClick = useRef(null);
 
   useEffect(() => {
-    if (mobileScreen) {
-      handleClick.current = toggleMobileSidebar(true);
+    if (!desktopScreen) {
+      handleClick.current = toggleMobileSidebar((state) => !state);
     } else {
       handleClick.current = function () {
         setIsDesktopSidebarOpen((state) => !state);
       };
     }
-  }, [mobileScreen, toggleMobileSidebar, setIsDesktopSidebarOpen]);
+  }, [desktopScreen, toggleMobileSidebar, setIsDesktopSidebarOpen]);
 
   return (
     <Box
@@ -42,18 +40,7 @@ const MenuAndLogoHolder = (props) => {
       >
         <MenuSharpIcon fontSize="medium" />
       </IconButton>
-      <Box
-        component="span"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "10px",
-        }}
-      >
-        <ImageHolder src={logoImage} alt="logo" width="18px" height="18px" />
-        <TextHolder variant="h3">{logo}</TextHolder>
-      </Box>
+      <TextHolder variant="h3">{logo}</TextHolder>
     </Box>
   );
 };
