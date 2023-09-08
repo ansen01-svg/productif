@@ -12,7 +12,6 @@ const Header = (props) => {
         top: "0",
         left: "0",
         zIndex: "250",
-        // backgroundColor: "primary.main",
       }}
     >
       <HeaderCenter

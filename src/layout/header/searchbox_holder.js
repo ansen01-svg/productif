@@ -1,70 +1,67 @@
-import { Box } from "@mui/material";
 import { useState } from "react";
+import { Box } from "@mui/material";
 import Button from "../../components/button";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-import CloseSharpIcon from "@mui/icons-material/CloseSharp";
+import { useWindowWidth } from "../../hooks";
+import SearchInputHolder from "./search_input_holder.";
 
 const SearchboxHolder = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [showSearchBox, setShowSearchBox] = useState(false);
+
+  const { desktopScreen } = useWindowWidth();
+
+  const handleSearchButtonClick = () => {
+    if (desktopScreen) return;
+    setShowSearchBox(true);
+  };
+
+  const handleCloseButtonClick = () => {
+    if (!searchValue) {
+      setShowSearchBox(false);
+    } else {
+      setSearchValue("");
+    }
+  };
+
+  const handleInputValueChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <Box
       sx={{
-        flex: 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        borderRadius: "4px",
+        padding: "0 2px",
       }}
     >
       <Button
         role="search"
         variant="contained"
-        bgColor="#fff"
+        bgColor="searchInputColor.main"
         size="small"
-        borderTopRightRadius="0px"
-        borderBottomRightRadius="0px"
+        borderRadius="0"
         boxShadow="none"
         minWidth="40px"
-        hoverColor="#fff"
+        hoverColor="searchInputColor.buttonHover"
         hoverShadow="none"
+        onClick={handleSearchButtonClick}
       >
-        <SearchSharpIcon fontSize="medium" sx={{ color: "#000" }} />
-      </Button>
-      <Box
-        sx={{
-          flex: 1,
-          height: "30.28px",
-          position: "relative",
-          display: "flex",
-        }}
-      >
-        <label
-          htmlFor="search"
-          style={{ position: "absolute", top: "5px", left: "15px" }}
-        ></label>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Search"
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-          }}
+        <SearchSharpIcon
+          fontSize="medium"
+          sx={{ color: "searchInputColor.contrastText" }}
         />
-        <Button
-          variant="contained"
-          borderTopLeftRadius="0px"
-          borderBottomLeftRadius="0px"
-          bgColor="#fff"
-          size="small"
-          boxShadow="none"
-          minWidth="40px"
-          hoverColor="#fff"
-          hoverShadow="none"
-        >
-          <CloseSharpIcon fontSize="small" sx={{ color: "gray" }} />
-        </Button>
-      </Box>
+      </Button>
+      {(desktopScreen || showSearchBox) && (
+        <SearchInputHolder
+          searchValue={searchValue}
+          handleInputValueChange={handleInputValueChange}
+          handleCloseButtonClick={handleCloseButtonClick}
+        />
+      )}
     </Box>
   );
 };
