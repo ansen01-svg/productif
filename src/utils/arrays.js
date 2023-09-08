@@ -1,45 +1,27 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import FolderCopyOutlinedIcon from "@mui/icons-material/FolderCopyOutlined";
-import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
-import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import StarOutlineOutlinedIcon from "@mui/icons-material/StarOutlineOutlined";
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
-const navigation = [
-  {
-    id: 1,
-    navigationTitle: "Sign out",
-  },
-  {
-    id: 2,
-    navigationTitle: "Appearance",
-  },
-];
-
-const bottomNavigation = [
+const navigationItems = [
   {
     id: 0,
-    title: "Home",
+    title: "My Day",
     link: "/",
-    icon: <HomeOutlinedIcon />,
+    icon: <LightModeOutlinedIcon fontSize="small" />,
   },
   {
     id: 1,
-    title: "Projects",
-    link: "/projects",
-    icon: <FolderCopyOutlinedIcon />,
+    title: "Important",
+    link: "/important",
+    icon: <StarOutlineOutlinedIcon fontSize="small" />,
   },
   {
     id: 2,
-    title: "Templates",
-    link: "/templates",
-    icon: <SpaceDashboardOutlinedIcon />,
-  },
-  {
-    id: 3,
-    title: "Pro",
-    link: "/pro",
-    icon: <PaidOutlinedIcon />,
+    title: "Task",
+    link: "/tasks",
+    icon: <AssignmentOutlinedIcon fontSize="small" />,
   },
 ];
 
@@ -56,4 +38,4 @@ const mobileSidebarNavigation = [
   },
 ];
 
-export { navigation, bottomNavigation, mobileSidebarNavigation };
+export { navigationItems, mobileSidebarNavigation };

@@ -16,9 +16,9 @@ export const appSlice = createSlice({
       state.mode = payload;
     },
     setUser: (state) => {
-      const user = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
 
-      if (user) {
+      if (token) {
         const currentUser = JSON.parse(localStorage.getItem("user"));
         state.user = currentUser.user;
       } else {

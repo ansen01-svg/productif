@@ -1,7 +1,7 @@
 import { List } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { bottomNavigation } from "../../utils/arrays";
+import { navigationItems } from "../../utils/arrays";
 import ListItem from "./list_item";
 import {
   storeInSessionStorage,
@@ -18,9 +18,9 @@ const SidebarContent = () => {
 
   const handleClick = (linkTo, index) => {
     setSelectedIndex(index);
-    navigate(linkTo);
 
-    const currentPage = bottomNavigation.find((item) => item.id === index);
+    const currentPage = navigationItems.find((item) => item.id === index);
+    navigate(linkTo);
     storeInSessionStorage("currentPage", currentPage.title);
   };
 
@@ -29,17 +29,11 @@ const SidebarContent = () => {
       sx={{
         width: "100%",
         padding: "0",
-        "& .MuiButtonBase-root": {
-          borderRadius: "5px",
-        },
-        "& .MuiSvgIcon-root": {
-          fontSize: "25px",
-        },
       }}
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      {bottomNavigation.map((navigationItem) => {
+      {navigationItems.map((navigationItem) => {
         return (
           <ListItem
             key={navigationItem.id}

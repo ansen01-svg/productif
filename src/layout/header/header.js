@@ -12,7 +12,7 @@ const Header = (props) => {
         top: "0",
         left: "0",
         zIndex: "250",
-        // background: "#42a5f5",
+        // backgroundColor: "primary.main",
       }}
     >
       <HeaderCenter
@@ -27,14 +27,7 @@ const HeaderCenter = (props) => {
   const { toggleMobileSidebar, setIsDesktopSidebarOpen } = props;
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        backgroundColor: "inherit",
-        color: "inherit",
-        boxShadow: "2px 2px 2px rgba(64,87,109,.07)",
-      }}
-    >
+    <AppBar position="sticky">
       <Content
         toggleMobileSidebar={toggleMobileSidebar}
         setIsDesktopSidebarOpen={setIsDesktopSidebarOpen}

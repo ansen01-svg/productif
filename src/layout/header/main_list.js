@@ -52,9 +52,9 @@ const MainList = () => {
       <ListItemButton onClick={handleClick}>
         <ListItemText primary="Appearance" />
         {open ? (
-          <ExpandLessSharpIcon fontSize="medium" />
+          <ExpandLessSharpIcon fontSize="small" />
         ) : (
-          <ExpandMoreSharpIcon fontSize="medium" />
+          <ExpandMoreSharpIcon fontSize="small" />
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

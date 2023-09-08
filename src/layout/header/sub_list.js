@@ -1,7 +1,7 @@
 import List from "@mui/material/List";
 import { ListItemIcon, ListItemButton, ListItemText } from "@mui/material";
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import LightModeIcon from "@mui/icons-material/LightMode";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 
 const SubList = ({ selectedIndex, handleListItemClick }) => {
   return (
@@ -11,7 +11,7 @@ const SubList = ({ selectedIndex, handleListItemClick }) => {
         onClick={(event) => handleListItemClick(event, 0)}
       >
         <ListItemIcon>
-          <LightModeIcon />
+          <LightModeOutlinedIcon fontSize="medium" />
         </ListItemIcon>
         <ListItemText primary="Light mode" />
       </ListItemButton>
@@ -20,7 +20,7 @@ const SubList = ({ selectedIndex, handleListItemClick }) => {
         onClick={(event) => handleListItemClick(event, 1)}
       >
         <ListItemIcon>
-          <NightlightIcon />
+          <NightlightOutlinedIcon fontSize="medium" />
         </ListItemIcon>
         <ListItemText primary="Dark mode" />
       </ListItemButton>
