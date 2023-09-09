@@ -1,8 +1,16 @@
 import { Typography } from "@mui/material";
 
 const TextHolder = (props) => {
-  const { children, variant, fontSize, color, padding, component, flexGrow } =
-    props;
+  const {
+    children,
+    variant,
+    fontSize,
+    fontWeight,
+    color,
+    padding,
+    component,
+    flexGrow,
+  } = props;
 
   return (
     <div>
@@ -11,6 +19,7 @@ const TextHolder = (props) => {
         component={component}
         sx={{
           fontSize: fontSize,
+          fontWeight: fontWeight,
           color: color,
           padding: padding,
           flexGrow: flexGrow,

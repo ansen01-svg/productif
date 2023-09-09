@@ -4,7 +4,7 @@ const initialState = {
   mode: localStorage.getItem("mode") || "light",
   user: null,
   tasks: [],
-  important: [],
+  sortedBy: null,
 };
 
 export const appSlice = createSlice({

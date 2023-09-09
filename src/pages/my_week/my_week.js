@@ -4,7 +4,7 @@ import AddTaskBar from "../../components/add_task_bar/add_task_bar";
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
 import TaskDisplay from "./tasks_display";
 
-const MyDayPage = () => {
+const MyWeekPage = () => {
   const { sortedBy } = useSelector((state) => state.appReducer);
 
   return (
@@ -26,4 +26,4 @@ const MyDayPage = () => {
   );
 };
 
-export default MyDayPage;
+export default MyWeekPage;

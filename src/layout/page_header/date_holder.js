@@ -33,7 +33,7 @@ const DateHolder = () => {
         </TextHolder>
       </Box>
       {location === "My Day" && (
-        <TextHolder variant="p" fontSize="0.8rem">
+        <TextHolder variant="p" fontSize="0.75rem">
           {getCurrentDate()}
         </TextHolder>
       )}
