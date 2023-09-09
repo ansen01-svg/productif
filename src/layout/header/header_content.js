@@ -1,10 +1,10 @@
-import { Toolbar, Popover } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import { useState } from "react";
 import MenuAndLogoHolder from "./menu_and_logo_holder";
-import PopoverContent from "./popover";
 import SearchboxHolder from "./searchbox_holder";
 import SearchAndUserHolder from "./search_and_user_holder";
 import { useWindowWidth } from "../../hooks";
+import PopOver from "./popover";
 
 const Content = (props) => {
   const { toggleMobileSidebar, setIsDesktopSidebarOpen } = props;
@@ -39,23 +39,12 @@ const Content = (props) => {
       />
       {desktopScreen && <SearchboxHolder />}
       <SearchAndUserHolder id={id} handleClick={handleClick} />
-      <Popover
+      <PopOver
+        handleClose={handleClose}
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        sx={{
-          "& .MuiPaper-root": {
-            width: "273px",
-          },
-        }}
-      >
-        <PopoverContent />
-      </Popover>
+      />
     </Toolbar>
   );
 };

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 import Button from "../../components/button";
 
-const SortHolder = () => {
+const SortHolder = ({ handleClick }) => {
   return (
     <Box>
       <Button
@@ -13,6 +13,7 @@ const SortHolder = () => {
         textTransform="capitalize"
         fontWeight={400}
         startIcon={<ImportExportOutlinedIcon fontSize="medium" />}
+        onClick={handleClick}
       >
         Sort
       </Button>

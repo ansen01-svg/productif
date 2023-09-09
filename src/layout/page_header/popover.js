@@ -16,11 +16,12 @@ const PopOver = (props) => {
       }}
       sx={{
         "& .MuiPaper-root": {
-          width: "273px",
+          minWidth: "200px",
+          maxWidth: "290px",
         },
       }}
     >
-      <PopoverContent />
+      <PopoverContent handleClose={handleClose} />
     </Popover>
   );
 };

@@ -1,8 +1,8 @@
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import StarOutlineOutlinedIcon from "@mui/icons-material/StarOutlineOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
+import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 
 const navigationItems = [
   {
@@ -19,23 +19,28 @@ const navigationItems = [
   },
   {
     id: 2,
-    title: "Task",
+    title: "Tasks",
     link: "/tasks",
     icon: <AssignmentOutlinedIcon fontSize="medium" />,
   },
 ];
 
-const mobileSidebarNavigation = [
+const sortOptions = [
+  {
+    id: 0,
+    title: "Importance",
+    icon: <LightModeOutlinedIcon fontSize="medium" />,
+  },
   {
     id: 1,
-    title: "Light mode",
-    icon: <LightModeIcon />,
+    title: "Alphabetically",
+    icon: <ImportExportOutlinedIcon fontSize="medium" />,
   },
   {
     id: 2,
-    title: "Dark mode",
-    icon: <NightlightIcon />,
+    title: "Most recent",
+    icon: <ScheduleOutlinedIcon fontSize="medium" />,
   },
 ];
 
-export { navigationItems, mobileSidebarNavigation };
+export { navigationItems, sortOptions };
