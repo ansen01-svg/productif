@@ -9,19 +9,19 @@ const navigationItems = [
     id: 0,
     title: "My Day",
     link: "/",
-    icon: <LightModeOutlinedIcon fontSize="small" />,
+    icon: <LightModeOutlinedIcon fontSize="medium" />,
   },
   {
     id: 1,
     title: "Important",
     link: "/important",
-    icon: <StarOutlineOutlinedIcon fontSize="small" />,
+    icon: <StarOutlineOutlinedIcon fontSize="medium" />,
   },
   {
     id: 2,
     title: "Task",
     link: "/tasks",
-    icon: <AssignmentOutlinedIcon fontSize="small" />,
+    icon: <AssignmentOutlinedIcon fontSize="medium" />,
   },
 ];
 

@@ -22,6 +22,7 @@ const Button = (props) => {
     hoverColor,
     hoverShadow,
     color,
+    fontWeight,
   } = props;
 
   const buttonStyles = {
@@ -31,9 +32,9 @@ const Button = (props) => {
     bgcolor: bgColor,
     padding: padding,
     boxShadow: boxShadow,
+    fontWeight: fontWeight,
     textTransform: textTransform || "uppercase",
     borderRadius: borderRadius,
-    color: color,
     "&.MuiButtonBase-root:hover": {
       bgcolor: hoverColor,
       boxShadow: hoverShadow,
@@ -44,6 +45,7 @@ const Button = (props) => {
     <MuiButton
       role={role}
       variant={variant}
+      color={color}
       size={size}
       sx={buttonStyles}
       onClick={onClick}

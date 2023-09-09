@@ -10,7 +10,9 @@ import { darkPalette, lightPalette } from "../mui_theme_provider";
 
 const Register = lazy(() => import("../pages/register"));
 const Layout = lazy(() => import("../layout"));
-const Home = lazy(() => import("../pages/home"));
+const MyDay = lazy(() => import("../pages/my_day"));
+const Important = lazy(() => import("../pages/important"));
+const Tasks = lazy(() => import("../pages/tasks"));
 const NotFound = lazy(() => import("../pages/not_found"));
 
 const AppRouter = () => {
@@ -36,7 +38,25 @@ const AppRouter = () => {
             element={
               <SuspendedComponent
                 fallback={<LoadingFallback />}
-                component={<Home />}
+                component={<MyDay />}
+              />
+            }
+          />
+          <Route
+            path="important"
+            element={
+              <SuspendedComponent
+                fallback={<LoadingFallback />}
+                component={<Important />}
+              />
+            }
+          />
+          <Route
+            path="tasks"
+            element={
+              <SuspendedComponent
+                fallback={<LoadingFallback />}
+                component={<Tasks />}
               />
             }
           />

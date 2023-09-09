@@ -1,22 +1,20 @@
 import { Box } from "@mui/material";
 import TextHolder from "../.././components/text_holder";
 
-const HomePage = () => {
+const ImportantPage = () => {
   return (
     <Box
       sx={{
-        flexGrow: 1,
+        width: "100%",
         height: "calc(100vh - 48px)",
-        bgcolor: "effects.background",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: "-100",
       }}
     >
-      <TextHolder variant="h2">This is home page</TextHolder>
+      <TextHolder variant="h2">Important</TextHolder>
     </Box>
   );
 };
 
-export default HomePage;
+export default ImportantPage;

@@ -1,7 +1,7 @@
-import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 import DesktopSidebar from "../desktop_sidebar";
 import MobileSidebar from "../mobile_sidebar/mobile_sidebar";
+import Content from "../content";
 
 const Main = (props) => {
   const {
@@ -26,7 +26,7 @@ const Main = (props) => {
         />
       )}
       {desktopScreen && isDesktopSidebarOpen && <DesktopSidebar />}
-      <Outlet />
+      <Content />
     </Box>
   );
 };

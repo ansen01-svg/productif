@@ -34,8 +34,6 @@ const SearchboxHolder = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: "4px",
-        padding: "0 2px",
       }}
     >
       <Button
@@ -48,6 +46,7 @@ const SearchboxHolder = () => {
         minWidth="40px"
         hoverColor="searchInputColor.buttonHover"
         hoverShadow="none"
+        height="30.28px"
         onClick={handleSearchButtonClick}
       >
         <SearchSharpIcon

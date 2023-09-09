@@ -6,7 +6,7 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import ExpandLessSharpIcon from "@mui/icons-material/ExpandLessSharp";
 import { setMode } from "../../store_provider/app_slice";
 import SubList from "./sub_list";
-import { clearFromStorages, signOut } from "../.././utils/utils_functions";
+import { clearFromStorages } from "../.././utils/utils_functions";
 import { setUser } from "../../store_provider/app_slice";
 
 const MainList = () => {
@@ -34,7 +34,6 @@ const MainList = () => {
   };
 
   const logOut = () => {
-    signOut();
     dispatch(setUser());
     clearFromStorages();
     window.location.reload();
@@ -52,9 +51,9 @@ const MainList = () => {
       <ListItemButton onClick={handleClick}>
         <ListItemText primary="Appearance" />
         {open ? (
-          <ExpandLessSharpIcon fontSize="small" />
+          <ExpandLessSharpIcon fontSize="medium" />
         ) : (
-          <ExpandMoreSharpIcon fontSize="small" />
+          <ExpandMoreSharpIcon fontSize="medium" />
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

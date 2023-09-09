@@ -18,7 +18,7 @@ const UserHolder = (props) => {
         id={id}
         onClick={handleClick}
       >
-        <AccountCircleOutlinedIcon fontSize="medium" />
+        <AccountCircleOutlinedIcon fontSize="large" />
       </Button>
     </Box>
   );

@@ -18,6 +18,11 @@ const lightPalette = {
     // closeBtnTextColor: "gray",
     contrastText: "#000",
   },
+  sortButtonColor: {
+    main: "#faf9f8",
+    hoverColor: "#fff",
+    contrastText: "#1976d2",
+  },
 };
 
 export default lightPalette;

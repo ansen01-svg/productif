@@ -24,6 +24,11 @@ const darkPalette = {
     // closeBtnTextColor: "#fff",
     contrastText: "#000",
   },
+  sortButtonColor: {
+    main: "#181818",
+    hoverColor: "#181818",
+    contrastText: "#fff",
+  },
 };
 
 export default darkPalette;
