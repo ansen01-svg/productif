@@ -3,6 +3,7 @@ import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 
 const navigationItems = [
   {
@@ -13,12 +14,18 @@ const navigationItems = [
   },
   {
     id: 1,
+    title: "My Week",
+    link: "/my-week",
+    icon: <CalendarTodayOutlinedIcon fontSize="medium" />,
+  },
+  {
+    id: 2,
     title: "Important",
     link: "/important",
     icon: <StarOutlineOutlinedIcon fontSize="medium" />,
   },
   {
-    id: 2,
+    id: 3,
     title: "Tasks",
     link: "/tasks",
     icon: <AssignmentOutlinedIcon fontSize="medium" />,

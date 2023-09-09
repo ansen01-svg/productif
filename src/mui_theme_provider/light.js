@@ -23,6 +23,15 @@ const lightPalette = {
     hoverColor: "#fff",
     contrastText: "#1976d2",
   },
+  taskHolder: {
+    main: "#fff",
+    contrastText: "#1976d2",
+    boxShadow: "rgba(0,0,0,0.1)",
+  },
+  buttonBox: {
+    main: "#faf9f8",
+    contrastText: "#000",
+  },
 };
 
 export default lightPalette;

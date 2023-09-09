@@ -28,9 +28,11 @@ const getPageIndex = (pageTitle) => {
 
 const getLocation = () => {
   let location = window.location.href;
-  console.log(location);
+
   if (location.includes("important")) {
     location = "Important";
+  } else if (location.includes("my-week")) {
+    location = "My Week";
   } else if (location.includes("tasks")) {
     location = "Tasks";
   } else {

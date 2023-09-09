@@ -29,6 +29,15 @@ const darkPalette = {
     hoverColor: "#181818",
     contrastText: "#fff",
   },
+  taskHolder: {
+    main: "#121212",
+    contrastText: "#1976d2",
+    boxShadow: "rgba(0,0,0,0.1)",
+  },
+  buttonBox: {
+    main: "#121212",
+    contrastText: "#1976d2",
+  },
 };
 
 export default darkPalette;

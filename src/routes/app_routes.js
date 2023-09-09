@@ -11,6 +11,7 @@ import { darkPalette, lightPalette } from "../mui_theme_provider";
 const Register = lazy(() => import("../pages/register"));
 const Layout = lazy(() => import("../layout"));
 const MyDay = lazy(() => import("../pages/my_day"));
+const MyWeek = lazy(() => import("../pages/my_week"));
 const Important = lazy(() => import("../pages/important"));
 const Tasks = lazy(() => import("../pages/tasks"));
 const NotFound = lazy(() => import("../pages/not_found"));
@@ -39,6 +40,15 @@ const AppRouter = () => {
               <SuspendedComponent
                 fallback={<LoadingFallback />}
                 component={<MyDay />}
+              />
+            }
+          />
+          <Route
+            path="my-week"
+            element={
+              <SuspendedComponent
+                fallback={<LoadingFallback />}
+                component={<MyWeek />}
               />
             }
           />
