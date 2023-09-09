@@ -9,7 +9,7 @@ const DesktopSidebar = () => {
         width: 290,
         maxWidth: 300,
         height: "calc(100vh - 48px)",
-        padding: "40px 0",
+        padding: "24px 0",
         position: "sticky",
         top: "48px",
         left: "0",

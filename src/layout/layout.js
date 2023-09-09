@@ -3,17 +3,25 @@ import { useState, useEffect } from "react";
 import { useWindowWidth } from "../hooks";
 import Header from "./header";
 import Main from "./main";
+import {
+  storeInSessionStorage,
+  getFromSessionStorage,
+} from ".././utils/utils_functions";
+import { navigationItems } from ".././utils/arrays";
 
 const Layout = () => {
-  // const dispatch = useDispatch();
   const { desktopScreen } = useWindowWidth();
 
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(setUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    const currentPage = getFromSessionStorage("currentPage");
+
+    if (currentPage) return;
+    storeInSessionStorage("currentPage", navigationItems[0].title);
+    // get user after this
+  }, []);
 
   useEffect(() => {
     if (desktopScreen) {

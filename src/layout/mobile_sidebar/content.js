@@ -6,7 +6,7 @@ const Content = (props) => {
 
   return (
     <Box
-      sx={{ width: 200, padding: "40px 0" }}
+      sx={{ width: 200, padding: "24px 0" }}
       role="presentation"
       onClick={toggleMobileSidebar(false)}
       onKeyDown={toggleMobileSidebar(false)}
