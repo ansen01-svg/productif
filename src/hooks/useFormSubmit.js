@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 
 const useFormSubmit = (id) => {
+  console.log(app);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   let handleFormSubmit;
