@@ -1,7 +1,4 @@
 import { Box } from "@mui/material";
-import TextHolder from "../../components/text_holder";
-import Button from "../../components/button";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
 
 const InputBox = () => {
   return (
@@ -31,17 +28,6 @@ const Content = () => {
         gap: "10px",
       }}
     >
-      {/* <Button
-        bgColor="searchInputColor.main"
-        size="small"
-        borderRadius="0"
-        boxShadow="none"
-        minWidth="40px"
-        hoverColor="searchInputColor.buttonHover"
-        hoverShadow="none"
-      >
-        <AddSharpIcon fontSize="medium" />
-      </Button> */}
       <input
         type="text"
         placeholder="Add a task"
