@@ -3,8 +3,11 @@ import MainList from "./main_list";
 import TextHolder from "../../components/text_holder";
 import Divider from "@mui/material/Divider";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useSelector } from "react-redux";
 
 const PopoverContent = () => {
+  const { user } = useSelector((state) => state.appReducer);
+
   return (
     <>
       <Box
@@ -18,7 +21,7 @@ const PopoverContent = () => {
         }}
       >
         <AccountCircleOutlinedIcon fontSize="large" />
-        <TextHolder variant="p">Ansen</TextHolder>
+        <TextHolder variant="p">{user && user}</TextHolder>
       </Box>
       <Divider />
       <MainList />

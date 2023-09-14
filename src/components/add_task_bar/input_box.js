@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-const InputBox = () => {
+const InputBox = ({ task, setTask }) => {
   return (
     <Box
       flexGrow={1}
@@ -12,12 +12,12 @@ const InputBox = () => {
         color: "taskHolder.contrastText",
       }}
     >
-      <Content />
+      <Content task={task} setTask={setTask} />
     </Box>
   );
 };
 
-const Content = () => {
+const Content = ({ task, setTask }) => {
   return (
     <Box
       sx={{
@@ -31,6 +31,8 @@ const Content = () => {
       <input
         type="text"
         placeholder="Add a task"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
         style={{
           width: "100%",
           border: "none",

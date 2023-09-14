@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { app } from "../firebase_config";
+import { app } from "../firebase/firebase_config";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -8,12 +8,11 @@ import {
 } from "firebase/auth";
 
 const useFormSubmit = (id) => {
-  console.log(app);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   let handleFormSubmit;
 
-  const authentication = getAuth();
+  const authentication = getAuth(app);
 
   //for submitting sign in form
   if (id === "login") {

@@ -7,9 +7,11 @@ import ExpandLessSharpIcon from "@mui/icons-material/ExpandLessSharp";
 import { setMode } from "../../store_provider/app_slice";
 import SubList from "./sub_list";
 import { clearFromStorages } from "../.././utils/utils_functions";
-import { setUser } from "../../store_provider/app_slice";
+import { app } from "../../firebase/firebase_config";
+import { getAuth, signOut } from "firebase/auth";
 
 const MainList = () => {
+  const auth = getAuth(app);
   const dispatch = useDispatch();
 
   const mode = localStorage.getItem("mode");
@@ -21,6 +23,7 @@ const MainList = () => {
     setOpen(!open);
   };
 
+  // select appearance of the app
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
 
@@ -33,8 +36,9 @@ const MainList = () => {
     }
   };
 
+  // logout of the app
   const logOut = () => {
-    dispatch(setUser());
+    signOut(auth);
     clearFromStorages();
     window.location.reload();
   };

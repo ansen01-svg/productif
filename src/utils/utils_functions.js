@@ -26,32 +26,59 @@ const getPageIndex = (pageTitle) => {
   return currentPage.id;
 };
 
-const getLocation = () => {
-  let location = window.location.href;
-
-  if (location.includes("important")) {
-    location = "Important";
-  } else if (location.includes("my-week")) {
-    location = "My Week";
-  } else if (location.includes("tasks")) {
-    location = "Tasks";
-  } else {
-    location = "My Day";
-  }
-
-  const page = navigationItems.find((item) => item.title === location);
-
-  return { location, page };
-};
-
 const getCurrentDate = () => {
   let date = moment().format("dddd MMMM Do");
-
-  const day = date.slice(0, 9);
-  const monthAndDate = date.slice(9, -2);
-  date = `${day}, ${monthAndDate}`;
-
   return date;
+};
+
+const generateHrs = (limit) => {
+  const hrsArray = [];
+  const count = limit;
+
+  for (let i = 0; i < count; i++) {
+    if (i.toString().length === 1) {
+      if (i === 9) {
+        const obj = { id: i, count: String(i + 1) };
+        hrsArray.push(obj);
+      } else {
+        const obj = { id: i, count: String(`0${i + 1}`) };
+        hrsArray.push(obj);
+      }
+    } else if (i === 59) {
+      const obj = { id: i, count: "00" };
+      hrsArray.push(obj);
+    } else {
+      const obj = { id: i, count: String(i + 1) };
+      hrsArray.push(obj);
+    }
+  }
+
+  return hrsArray;
+};
+
+const generateWeek = () => {
+  let week = [];
+  const weekDays = 7;
+
+  for (let i = 0; i < weekDays; i++) {
+    if (i === 0) {
+      const currentDate = moment().format("LL").split(" ");
+      const day = currentDate[1].slice(0, 2);
+      const month = currentDate[0];
+
+      const eachDay = { id: i, day: `${day} ${month}` };
+      week.push(eachDay);
+    } else {
+      const currentDate = moment().add(i, "days").format("LL").split(" ");
+      const day = currentDate[1].slice(0, currentDate[1].length - 1);
+      const month = currentDate[0];
+
+      const eachDay = { id: i, day: `${day} ${month}` };
+      week.push(eachDay);
+    }
+  }
+
+  return week;
 };
 
 export {
@@ -61,6 +88,7 @@ export {
   clearSessionStorage,
   clearLocalStorage,
   clearFromStorages,
-  getLocation,
   getCurrentDate,
+  generateHrs,
+  generateWeek,
 };
