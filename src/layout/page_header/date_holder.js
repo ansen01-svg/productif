@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import TextHolder from "../../components/text_holder";
-import { getCurrentDate, getLocation } from "../../utils/utils_functions";
+import { getCurrentDate } from "../../utils/utils_functions";
+import { useGetLocation } from "../../hooks";
 
 const DateHolder = () => {
-  const { location, page } = getLocation();
+  const { pageLocation, page } = useGetLocation();
 
   return (
     <Box
@@ -29,10 +30,10 @@ const DateHolder = () => {
       >
         {page.icon}
         <TextHolder variant="h2" color="primary.main">
-          {location}
+          {pageLocation}
         </TextHolder>
       </Box>
-      {location === "My Day" && (
+      {(pageLocation === "My Day" || pageLocation === "My Week") && (
         <TextHolder variant="p" fontSize="0.75rem">
           {getCurrentDate()}
         </TextHolder>
