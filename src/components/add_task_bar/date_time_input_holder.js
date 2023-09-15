@@ -12,6 +12,8 @@ const DateTimeInputHolder = ({
   minsValue,
   handleHrsChange,
   handleMinsChange,
+  date,
+  setDate,
 }) => {
   return (
     <Box
@@ -33,7 +35,7 @@ const DateTimeInputHolder = ({
           handleMinsChange={handleMinsChange}
         />
       ) : (
-        <DateInputHolder options={dateOptions} />
+        <DateInputHolder options={dateOptions} date={date} setDate={setDate} />
       )}
     </Box>
   );
@@ -68,11 +70,16 @@ const TimeInputholder = (props) => {
 };
 
 const DateInputHolder = (props) => {
-  const { options } = props;
+  const { options, date, setDate } = props;
 
   return (
     <>
-      <DateInput options={options} />
+      <DateInput
+        labelTitle="dd / mm"
+        options={options}
+        value={date}
+        handleChange={setDate}
+      />
     </>
   );
 };

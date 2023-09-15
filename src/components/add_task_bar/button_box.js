@@ -11,6 +11,10 @@ const ButtonBox = ({
   fromMinsValue,
   toHrsValue,
   toMinsValue,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }) => {
   return (
     <Box
@@ -34,6 +38,10 @@ const ButtonBox = ({
         handleFromMinChange={handleFromMinChange}
         handleToHrsChange={handleToHrsChange}
         handleToMinsChange={handleToMinsChange}
+        startDate={startDate}
+        endDate={endDate}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
     </Box>
   );

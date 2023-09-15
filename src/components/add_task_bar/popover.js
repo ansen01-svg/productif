@@ -17,6 +17,10 @@ const PopOver = (props) => {
     handleFromMinChange,
     handleToHrsChange,
     handleToMinsChange,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
   } = props;
 
   return (
@@ -47,6 +51,10 @@ const PopOver = (props) => {
         handleFromMinChange={handleFromMinChange}
         handleToHrsChange={handleToHrsChange}
         handleToMinsChange={handleToMinsChange}
+        startDate={startDate}
+        endDate={endDate}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
     </Popover>
   );

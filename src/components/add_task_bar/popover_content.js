@@ -15,6 +15,10 @@ const PopoverContent = ({
   handleFromMinChange,
   handleToHrsChange,
   handleToMinsChange,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }) => {
   return (
     <>
@@ -43,7 +47,12 @@ const PopoverContent = ({
           handleToMinsChange={handleToMinsChange}
         />
       ) : (
-        <DueDate />
+        <DueDate
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
       )}
     </>
   );

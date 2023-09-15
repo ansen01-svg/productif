@@ -22,9 +22,6 @@ const TimeInput = (props) => {
         label={labelTitle}
         onChange={handleChange}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {options.map((item) => {
           return (
             <MenuItem key={item.id} value={item.count}>
