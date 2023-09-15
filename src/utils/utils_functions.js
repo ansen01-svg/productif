@@ -31,24 +31,18 @@ const getCurrentDate = () => {
   return date;
 };
 
-const generateHrs = (limit) => {
+const generateHrs = (start, end) => {
   const hrsArray = [];
-  const count = limit;
 
-  for (let i = 0; i < count; i++) {
+  for (let i = start; i < end + 1; i++) {
     if (i.toString().length === 1) {
-      if (i === 9) {
-        const obj = { id: i, count: String(i + 1) };
-        hrsArray.push(obj);
-      } else {
-        const obj = { id: i, count: String(`0${i + 1}`) };
-        hrsArray.push(obj);
-      }
-    } else if (i === 59) {
+      const obj = { id: i, count: String(`0${i}`) };
+      hrsArray.push(obj);
+    } else if (i === 60) {
       const obj = { id: i, count: "00" };
       hrsArray.push(obj);
     } else {
-      const obj = { id: i, count: String(i + 1) };
+      const obj = { id: i, count: String(i) };
       hrsArray.push(obj);
     }
   }

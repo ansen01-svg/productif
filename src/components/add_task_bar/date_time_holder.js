@@ -12,6 +12,8 @@ const DateTimeHolder = ({
   minsValue,
   handleHrsChange,
   handleMinsChange,
+  date,
+  setDate,
 }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -32,6 +34,8 @@ const DateTimeHolder = ({
         minsValue={minsValue}
         handleHrsChange={handleHrsChange}
         handleMinsChange={handleMinsChange}
+        date={date}
+        setDate={setDate}
       />
     </Box>
   );

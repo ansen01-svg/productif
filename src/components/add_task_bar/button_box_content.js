@@ -5,6 +5,7 @@ import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 import { useGetLocation } from "../../hooks";
 import PopOver from "./popover";
 import Button from "../button";
+import TextHolder from "../text_holder";
 
 const Content = ({
   task,
@@ -16,6 +17,10 @@ const Content = ({
   fromMinsValue,
   toHrsValue,
   toMinsValue,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -32,6 +37,11 @@ const Content = ({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const startTime =
+    fromHrsValue && fromMinsValue ? `${fromHrsValue} : ${fromMinsValue}` : "";
+  const endTime =
+    toHrsValue && toMinsValue ? `${toHrsValue} : ${toMinsValue}` : "";
+
   return (
     <Box
       flexGrow={1}
@@ -42,12 +52,20 @@ const Content = ({
       }}
     >
       {pageLocation === "My Week" && (
-        <DueButtonHolder handleClick={handleClick}>
+        <DueButtonHolder
+          handleClick={handleClick}
+          value1={startDate}
+          value2={endDate}
+        >
           <CalendarTodayOutlinedIcon fontSize="small" />
         </DueButtonHolder>
       )}
       {pageLocation === "My Day" && (
-        <DueButtonHolder handleClick={handleClick}>
+        <DueButtonHolder
+          handleClick={handleClick}
+          value1={startTime}
+          value2={endTime}
+        >
           <ScheduleOutlinedIcon fontSize="small" />
         </DueButtonHolder>
       )}
@@ -60,14 +78,10 @@ const Content = ({
           id={id}
           open={open}
           anchorEl={anchorEl}
-          fromHrsValue={fromHrsValue}
-          fromMinsValue={fromMinsValue}
-          toHrsValue={toHrsValue}
-          toMinsValue={toMinsValue}
-          handleFromHrsChange={handleFromHrsChange}
-          handleFromMinChange={handleFromMinChange}
-          handleToHrsChange={handleToHrsChange}
-          handleToMinsChange={handleToMinsChange}
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
         />
       )}
       {pageLocation === "My Day" && (
@@ -92,9 +106,16 @@ const Content = ({
   );
 };
 
-const DueButtonHolder = ({ children, handleClick }) => {
+const DueButtonHolder = ({ children, handleClick, value1, value2 }) => {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        alignitems: "center",
+        justifyContent: "center",
+        gap: "10px",
+      }}
+    >
       <Button
         bgColor="inherit"
         size="small"
@@ -107,6 +128,13 @@ const DueButtonHolder = ({ children, handleClick }) => {
       >
         {children}
       </Button>
+      {value1 && value2 && (
+        <Box component="span">
+          <TextHolder variant="p" fontSize="0.75rem">
+            {value1} - {value2}
+          </TextHolder>
+        </Box>
+      )}
     </Box>
   );
 };
@@ -120,6 +148,7 @@ const AddButtonHolder = ({ task }) => {
         textTransform="capitalize"
         borderRadius={0}
         disabled={!task}
+        type="submit"
       >
         Add
       </Button>

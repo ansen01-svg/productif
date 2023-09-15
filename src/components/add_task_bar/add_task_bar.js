@@ -17,7 +17,7 @@ const AddTaskBar = () => {
       }}
     >
       {showInputBox ? (
-        <InputAndButtonBoxHolder />
+        <InputAndButtonBoxHolder setShowInputBox={setShowInputBox} />
       ) : (
         <LabelBox handlePlusButtonClick={handlePlusButtonClick} />
       )}

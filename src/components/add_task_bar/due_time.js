@@ -17,8 +17,8 @@ const DueTime = ({
       <DateTimeHolder
         id="time"
         title="Start from (time)"
-        options1={generateHrs(24)}
-        options2={generateHrs(60)}
+        options1={generateHrs(1, 24)}
+        options2={generateHrs(1, 60)}
         hrsValue={fromHrsValue}
         minsValue={fromMinsValue}
         handleHrsChange={handleFromHrsChange}
@@ -27,8 +27,8 @@ const DueTime = ({
       <DateTimeHolder
         id="time"
         title="End (time)"
-        options1={generateHrs(24)}
-        options2={generateHrs(60)}
+        options1={generateHrs(1, 24)}
+        options2={generateHrs(1, 60)}
         hrsValue={toHrsValue}
         minsValue={toMinsValue}
         handleHrsChange={handleToHrsChange}

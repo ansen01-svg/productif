@@ -4,7 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const DateInput = (props) => {
-  const { options, labelTitle } = props;
+  const { options, labelTitle, value, handleChange } = props;
 
   return (
     <FormControl
@@ -18,13 +18,11 @@ const DateInput = (props) => {
       <Select
         labelId="demo-select-small-label"
         id="demo-select-small"
-        // value={value}
+        placeholder="DD / MM"
+        value={value}
         label={labelTitle}
-        // onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {options.map((item) => {
           return (
             <MenuItem key={item.id} value={item.day}>

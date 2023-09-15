@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import AppRouter from "./routes";
 import AppStoreProvider from "./store_provider";
 import AppThemeProvider from "./mui_theme_provider";
