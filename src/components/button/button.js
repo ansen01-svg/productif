@@ -23,9 +23,11 @@ const Button = (props) => {
     hoverShadow,
     color,
     fontWeight,
+    flexGrow,
   } = props;
 
   const buttonStyles = {
+    flexGrow: flexGrow,
     width: width,
     minWidth: minWidth,
     height: height,

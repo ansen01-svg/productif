@@ -38,9 +38,15 @@ const Content = ({
   const id = open ? "simple-popover" : undefined;
 
   const startTime =
-    fromHrsValue && fromMinsValue ? `${fromHrsValue} : ${fromMinsValue}` : "";
+    fromHrsValue && fromMinsValue
+      ? `${fromHrsValue} : ${fromMinsValue} ${
+          fromHrsValue < 12 ? "A.M" : "P.M"
+        }`
+      : "";
   const endTime =
-    toHrsValue && toMinsValue ? `${toHrsValue} : ${toMinsValue}` : "";
+    toHrsValue && toMinsValue
+      ? `${toHrsValue} : ${toMinsValue} ${toHrsValue < 12 ? "A.M" : "P.M"}`
+      : "";
 
   return (
     <Box
