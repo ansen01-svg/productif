@@ -11,6 +11,10 @@ import {
 import { navigationItems } from ".././utils/arrays";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store_provider/app_slice";
+import {
+  fetchDailyTasks,
+  fetchWeeklyTasks,
+} from "../store_provider/firestore_slice";
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -36,6 +40,12 @@ const Layout = () => {
     };
   }, [dispatch]);
 
+  // fetch daily and weekly tasks
+  useEffect(() => {
+    dispatch(fetchDailyTasks());
+    dispatch(fetchWeeklyTasks());
+  }, [dispatch]);
+
   // store home page as current page
   useEffect(() => {
     const currentPage = getFromSessionStorage("currentPage");
@@ -44,6 +54,7 @@ const Layout = () => {
     storeInSessionStorage("currentPage", navigationItems[0].title);
   }, []);
 
+  // open and close desktop sidebar
   useEffect(() => {
     if (desktopScreen) {
       setIsDesktopSidebarOpen(true);
@@ -53,6 +64,7 @@ const Layout = () => {
     }
   }, [desktopScreen]);
 
+  // open and close mobile sidebar
   const toggleMobileSidebar = (toggle) => (event) => {
     if (
       event.type === "keydown" &&

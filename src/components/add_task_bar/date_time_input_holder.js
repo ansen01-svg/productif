@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import TimeInput from "./time_input";
 import DateInput from "./date_input";
 
-//till this both date and time props are passed
 const DateTimeInputHolder = ({
   id,
   dateOptions,
