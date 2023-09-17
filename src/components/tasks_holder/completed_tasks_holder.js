@@ -1,4 +1,4 @@
-import Bar from "../bar";
+// import Bar from "../bar";
 
 const CompletedTasksHolder = () => {
   return <></>;
