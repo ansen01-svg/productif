@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import MessageHolder from "./message_holder";
 import ButtonHolder from "./button_holder";
 
-const Form = memo(({ type }) => {
+const Form = memo(({ type, autocomplete }) => {
   const loginPage = type === "login";
 
   const { errorMessage, handleFormSubmit } = useFormSubmit(type);
@@ -46,6 +46,7 @@ const Form = memo(({ type }) => {
         label="Email"
         variant="outlined"
         register={register}
+        autocomplete="email"
       />
       <FieldHolder
         id="password"
@@ -54,6 +55,7 @@ const Form = memo(({ type }) => {
         label="Password"
         variant="outlined"
         register={register}
+        autocomplete={autocomplete}
       />
       {errorMessage && (
         <MessageHolder message={errorMessage} severity={"error"} />

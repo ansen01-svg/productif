@@ -6,7 +6,8 @@ import TaskDisplay from "./tasks_display";
 
 const MyDayPage = () => {
   const { sortedBy } = useSelector((state) => state.appReducer);
-
+  const { dailyTasks, status } = useSelector((state) => state.firestoreReducer);
+  console.log(dailyTasks, status);
   return (
     <Box
       sx={{
@@ -16,12 +17,12 @@ const MyDayPage = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        // gap: "24px",
       }}
     >
       {sortedBy && <SortbyDisplayHolder />}
       <AddTaskBar />
       <TaskDisplay />
+      {/* {dailyTasks.length < 1 ? <p>{status}</p> : <TaskDisplay />} */}
     </Box>
   );
 };

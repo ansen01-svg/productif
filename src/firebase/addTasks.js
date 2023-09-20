@@ -1,6 +1,10 @@
-import { db } from "./firebase_config";
+import { app, db } from "./firebase_config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
+
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth(app);
 
 const addDailyTasks = async (
   collectionName,
@@ -13,14 +17,17 @@ const addDailyTasks = async (
   try {
     await addDoc(collection(db, collectionName), {
       task: task,
-      start: `${startHrs} : ${startMins}`,
-      end: `${endHrs} : ${endMins}`,
+      start: `${startHrs}:${startMins}`,
+      end: `${endHrs}:${endMins}`,
       completed: false,
       important: false,
       created: Timestamp.now(),
+      createdBy: auth.currentUser.uid,
     });
+
     toast("New task added");
   } catch (error) {
+    console.log(error);
     toast("Opps! unable to add task");
   }
 };

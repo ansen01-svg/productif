@@ -1,15 +1,15 @@
 //app
-const logo = "MyTodos";
+const logo = "Productif";
 
 //login page variables
-const loginHeading = "Sign in";
+const loginHeading = "Sign in to";
 const loginFooterText = `Don't have an account ?`;
 const loginFooterLink = "/register";
 const loginFooterLinkText = "Sign up";
 const loginButtonTitle = "sign in";
 
 //register page variables
-const registerHeading = "Sign up";
+const registerHeading = "Sign up for";
 const registerFooterText = `Already have an account ?`;
 const registerFooterLink = "/login";
 const registerFooterLinkText = "Sign in";

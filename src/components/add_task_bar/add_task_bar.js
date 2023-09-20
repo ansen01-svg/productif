@@ -14,7 +14,10 @@ const AddTaskBar = () => {
     <Box
       sx={{
         width: "100%",
+        zIndex: 100,
         padding: "0 24px",
+        // boxShadow:
+        //   "0px 0.3px 0.9px rgba(0,0,0,0.1),0px 1.6px 3.6px rgba(0,0,0,0.1)",
       }}
     >
       {showInputBox ? (

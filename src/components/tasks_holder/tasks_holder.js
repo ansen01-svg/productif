@@ -26,8 +26,9 @@ const TasksHolder = ({ tasks }) => {
     <Box
       sx={{
         flexGrow: 1,
-        height: "calc(100vh - (96px + 52px + 24px))",
-        // height: "438px",
+        minHeight: "425px",
+        maxHeight: "467px",
+        // height: "467px",
         padding: "24px 16px 24px 24px",
         display: "flex",
         flexDirection: "column",

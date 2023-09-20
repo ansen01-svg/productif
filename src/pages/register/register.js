@@ -24,6 +24,7 @@ const Register = () => {
         footerLink={registerFooterLink}
         footerLinkText={registerFooterLinkText}
         type="register"
+        autocomplete="new-password"
       />
     </Container>
   );
