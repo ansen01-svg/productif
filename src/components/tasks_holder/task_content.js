@@ -1,6 +1,9 @@
 import { Box } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
-import Button from "../button";
+import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+import StarIcon from "@mui/icons-material/Star";
 
 const TaskContent = ({ id, individualTask }) => {
   const { task, start, end } = individualTask;
@@ -27,17 +30,50 @@ const CheckboxHolder = () => {
 
   return (
     <Box component="span">
-      <Checkbox {...label} size="small" />
+      <Checkbox
+        {...label}
+        icon={<Brightness1OutlinedIcon fontSize="small" />}
+        checkedIcon={<CheckCircleIcon fontSize="small" />}
+        sx={{
+          color: "#1976d2",
+        }}
+      />
     </Box>
   );
 };
 
 const ButtonHolder = ({ task, start, end }) => {
   return (
-    <Box>
-      <Button variant="contained" size="large" width="100%">
-        {task}
-      </Button>
+    <Box sx={{ flexGrow: 1 }}>
+      <button
+        style={{
+          width: "100%",
+          padding: "0 10px",
+          border: "none",
+          outline: "none",
+          background: "none",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          gap: "5px",
+          cursor: "pointer",
+        }}
+      >
+        <span>{task}</span>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "5px",
+          }}
+        >
+          <span style={{ color: "#1976d2" }}>{start}</span>
+          <span>to</span>
+          <span style={{ color: "#1976d2" }}>{end}</span>
+        </div>
+      </button>
     </Box>
   );
 };
@@ -47,7 +83,11 @@ const ImportantButtonHolder = () => {
 
   return (
     <Box>
-      <Checkbox {...label} size="small" />
+      <Checkbox
+        {...label}
+        icon={<StarBorderOutlinedIcon fontSize="small" />}
+        checkedIcon={<StarIcon fontSize="small" />}
+      />
     </Box>
   );
 };

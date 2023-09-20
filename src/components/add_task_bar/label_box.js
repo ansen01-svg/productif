@@ -7,7 +7,7 @@ import Bar from "../bar";
 const LabelBox = ({ handlePlusButtonClick }) => {
   return (
     <>
-      <Bar>
+      <Bar zIndex={50}>
         <Content handlePlusButtonClick={handlePlusButtonClick} />
       </Bar>
     </>

@@ -1,7 +1,7 @@
 import { Box, TextField } from "@mui/material";
 
 const FieldHolder = (props) => {
-  const { id, name, type, label, variant, register } = props;
+  const { id, name, type, label, variant, register, autocomplete } = props;
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -13,6 +13,7 @@ const FieldHolder = (props) => {
         variant={variant}
         sx={{ width: "100%" }}
         {...register(name)}
+        autoComplete={autocomplete}
       />
     </Box>
   );

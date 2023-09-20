@@ -4,8 +4,15 @@ import FormHolder from "./form_holder";
 import Footer from "./footer";
 
 const SubMain = (props) => {
-  const { heading, headerText, footerText, footerLink, footerLinkText, type } =
-    props;
+  const {
+    heading,
+    headerText,
+    footerText,
+    footerLink,
+    footerLinkText,
+    type,
+    autocomplete,
+  } = props;
 
   return (
     <Box
@@ -15,7 +22,7 @@ const SubMain = (props) => {
       }}
     >
       <Header heading={heading} headerText={headerText} />
-      <FormHolder type={type} />
+      <FormHolder type={type} autocomplete={autocomplete} />
       <Footer
         footerText={footerText}
         footerLink={footerLink}

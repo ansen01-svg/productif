@@ -6,7 +6,7 @@ const UncompletedTasksHolder = ({ tasks }) => {
     <>
       {tasks.map((task) => {
         return (
-          <Bar key={task.id}>
+          <Bar key={task.id} zIndex={1}>
             <TaskContent id={task.id} individualTask={task.data} />
           </Bar>
         );

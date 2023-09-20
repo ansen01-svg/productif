@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useWindowWidth } from "../hooks";
 import Header from "./header";
 import Main from "./main";
@@ -19,17 +19,16 @@ import {
 const Layout = () => {
   const dispatch = useDispatch();
   const { desktopScreen } = useWindowWidth();
+  const auth = getAuth();
 
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // get current user
   useEffect(() => {
-    const authentication = getAuth();
-
-    const unsubscribe = authentication.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        dispatch(setUser(authUser.auth.currentUser.email));
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(setUser(user.auth.currentUser.email));
       } else {
         dispatch(setUser(null));
       }
@@ -38,13 +37,16 @@ const Layout = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, [auth, dispatch]);
 
   // fetch daily and weekly tasks
   useEffect(() => {
-    dispatch(fetchDailyTasks());
-    dispatch(fetchWeeklyTasks());
-  }, [dispatch]);
+    onAuthStateChanged(auth, (user) => {
+      if (!user) return;
+      dispatch(fetchDailyTasks());
+      dispatch(fetchWeeklyTasks());
+    });
+  }, [auth, dispatch]);
 
   // store home page as current page
   useEffect(() => {

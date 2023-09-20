@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import {
   loginHeading,
   loginFooterText,
@@ -9,7 +9,7 @@ import AuthBody from "../../components/auth_body";
 
 const LoginPage = () => {
   return (
-    <Container
+    <Box
       sx={{
         width: "100vw",
         height: "100vh",
@@ -24,8 +24,9 @@ const LoginPage = () => {
         footerLink={loginFooterLink}
         footerLinkText={loginFooterLinkText}
         type="login"
+        autocomplete="current-password"
       />
-    </Container>
+    </Box>
   );
 };
 

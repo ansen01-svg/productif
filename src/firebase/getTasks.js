@@ -1,33 +1,47 @@
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "./firebase_config";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { app } from "./firebase_config";
 
-const useGetTasks = async () => {
-  // const dailyTasksQuery = query(
-  //   collection(db, "dailyTasks"),
-  //   orderBy("created")
-  // );
-  // onSnapshot(dailyTasksQuery, (querySnapshot) => {
-  //   dispatch(
-  //     setDailyTasks(
-  //       querySnapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         data: doc.data(),
-  //       }))
-  //     )
-  //   );
-  // });
+const db = getFirestore(app);
 
-  const weeklyTasksQuery = query(
-    collection(db, "weeklyTasks"),
-    orderBy("created")
-  );
-  onSnapshot(weeklyTasksQuery, (querySnapshot) => {
-    const data = querySnapshot.docs.map((doc) => ({
+const fetchDailyTasks = async (uid) => {
+  try {
+    const dailyTasksref = collection(db, "dailyTasks");
+
+    const q = query(dailyTasksref, where("createdBy", "==", uid));
+    const dailyTasksSnapshot = await getDocs(q);
+
+    const dailyTasks = dailyTasksSnapshot.docs.map((doc) => ({
       id: doc.id,
       data: doc.data(),
     }));
-    console.log(data);
-  });
+    return dailyTasks;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export default useGetTasks;
+const fetchWeeklyTasks = async (uid) => {
+  try {
+    const weeklyTasksref = collection(db, "weeklyTasks");
+
+    const q = query(weeklyTasksref, where("createdBy", "==", uid));
+
+    const weeklyTasksSnapshot = await getDocs(q);
+    const weeklyTasks = weeklyTasksSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    }));
+
+    return weeklyTasks;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { fetchDailyTasks, fetchWeeklyTasks };

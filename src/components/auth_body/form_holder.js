@@ -1,15 +1,15 @@
 import Form from "../../components/form";
 import { Box } from "@mui/material";
 
-const FormHolder = ({ type }) => {
+const FormHolder = ({ type, autocomplete }) => {
   return (
     <Box
       sx={{
         width: "100%",
-        height: "74%",
+        height: "310px",
       }}
     >
-      <Form type={type} />
+      <Form type={type} autocomplete={autocomplete} />
     </Box>
   );
 };
