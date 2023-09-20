@@ -75,8 +75,18 @@ const TaskForm = ({ setShowInputBox }) => {
         const time = moment().format("LT");
         const startHrs = time.split(":")[0];
         const startMins = time.split(":")[1].split(" ")[0];
+        const meridiem = +startHrs < 12 ? "AM" : "PM";
 
-        addDailyTasks("dailyTasks", task, startHrs, startMins, "00", "00");
+        addDailyTasks(
+          "dailyTasks",
+          task,
+          startHrs,
+          startMins,
+          "00",
+          "00",
+          meridiem,
+          "AM"
+        );
         dispatch(fetchDailyTasks());
         setTask("");
         setFromHrsValue("");
@@ -94,13 +104,18 @@ const TaskForm = ({ setShowInputBox }) => {
       ) {
         toast("Invalid time, set a proper time");
       } else {
+        const startMeridiem = +fromHrsValue < 12 ? "AM" : "PM";
+        const endMeridiem = +toHrsValue < 12 ? "AM" : "PM";
+
         addDailyTasks(
           "dailyTasks",
           task,
           fromHrsValue,
           fromMinsValue,
           toHrsValue,
-          toMinsValue
+          toMinsValue,
+          startMeridiem,
+          endMeridiem
         );
         dispatch(fetchDailyTasks());
         setTask("");

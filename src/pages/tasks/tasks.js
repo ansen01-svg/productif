@@ -6,7 +6,7 @@ const TasksPage = () => {
     <Box
       sx={{
         width: "100%",
-        height: "calc(100vh - 48px)",
+        // height: "calc(100vh - 48px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
