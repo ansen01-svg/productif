@@ -12,7 +12,7 @@ const Content = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         bgcolor: "effects.background",
       }}
     >

@@ -12,13 +12,15 @@ const addDailyTasks = async (
   startHrs,
   startMins,
   endHrs,
-  endMins
+  endMins,
+  startMeridiem,
+  endMeridiem
 ) => {
   try {
     await addDoc(collection(db, collectionName), {
       task: task,
-      start: `${startHrs}:${startMins}`,
-      end: `${endHrs}:${endMins}`,
+      start: `${startHrs}:${startMins} ${startMeridiem}`,
+      end: `${endHrs}:${endMins} ${endMeridiem}`,
       completed: false,
       important: false,
       created: Timestamp.now(),
