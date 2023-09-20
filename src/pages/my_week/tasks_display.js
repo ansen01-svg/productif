@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import TasksHolder from "../../components/tasks_holder/tasks_holder";
 
 const TaskDisplay = () => {
+  const { weeklyTasks } = useSelector((state) => state.firestoreReducer);
+
   return (
     <Box
       sx={{
@@ -8,7 +12,7 @@ const TaskDisplay = () => {
         width: "100%",
       }}
     >
-      task display
+      <TasksHolder tasks={weeklyTasks} />
     </Box>
   );
 };

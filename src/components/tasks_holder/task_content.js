@@ -49,6 +49,10 @@ const ButtonHolder = ({ task, start, end }) => {
         style={{
           width: "100%",
           padding: "0 10px",
+          fontSize: "15px",
+          fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+            "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+            sans-serif`,
           border: "none",
           outline: "none",
           background: "none",
@@ -69,9 +73,9 @@ const ButtonHolder = ({ task, start, end }) => {
             gap: "5px",
           }}
         >
-          <span style={{ color: "#1976d2" }}>{start}</span>
-          <span>to</span>
-          <span style={{ color: "#1976d2" }}>{end}</span>
+          <span style={{ color: "gray", fontSize: "0.75rem" }}>{start}</span>
+          <span style={{ color: "gray", fontSize: "0.75rem" }}>to</span>
+          <span style={{ color: "gray", fontSize: "0.75rem" }}>{end}</span>
         </div>
       </button>
     </Box>
