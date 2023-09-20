@@ -41,6 +41,7 @@ const addWeeklyTasks = async (collectionName, startDate, endDate, task) => {
       completed: false,
       important: false,
       created: Timestamp.now(),
+      createdBy: auth.currentUser.uid,
     });
     toast("New task added");
   } catch (error) {

@@ -2,11 +2,16 @@ import { useState } from "react";
 import { Box, Divider } from "@mui/material";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import { useGetLocation } from "../../hooks";
 import InputBox from "./input_box";
 import ButtonBox from "./button_box";
 import { generateWeek } from "../../utils/utils_functions";
 import { addDailyTasks, addWeeklyTasks } from "../../firebase/addTasks";
+import {
+  fetchDailyTasks,
+  fetchWeeklyTasks,
+} from "../../store_provider/firestore_slice";
 
 const InputAndButtonBoxHolder = ({ setShowInputBox }) => {
   return (
@@ -32,6 +37,8 @@ const TaskForm = ({ setShowInputBox }) => {
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const dispatch = useDispatch();
 
   const { pageLocation } = useGetLocation();
 
@@ -70,6 +77,7 @@ const TaskForm = ({ setShowInputBox }) => {
         const startMins = time.split(":")[1].split(" ")[0];
 
         addDailyTasks("dailyTasks", task, startHrs, startMins, "00", "00");
+        dispatch(fetchDailyTasks());
         setTask("");
         setFromHrsValue("");
         setFromMinsValue("");
@@ -94,6 +102,7 @@ const TaskForm = ({ setShowInputBox }) => {
           toHrsValue,
           toMinsValue
         );
+        dispatch(fetchDailyTasks());
         setTask("");
         setFromHrsValue("");
         setFromMinsValue("");
@@ -104,7 +113,8 @@ const TaskForm = ({ setShowInputBox }) => {
       if (!startDate || !endDate) {
         const weekDays = generateWeek();
 
-        addWeeklyTasks("weeklyTasks", weekDays[0], weekDays[6], task);
+        addWeeklyTasks("weeklyTasks", weekDays[0].day, weekDays[6].day, task);
+        dispatch(fetchWeeklyTasks());
         setTask("");
         setStartDate("");
         setEndDate("");
@@ -115,6 +125,7 @@ const TaskForm = ({ setShowInputBox }) => {
         toast("Invalid date, set a proper date");
       } else {
         addWeeklyTasks("weeklyTasks", startDate, endDate, task);
+        dispatch(fetchWeeklyTasks());
         setTask("");
         setStartDate("");
         setEndDate("");

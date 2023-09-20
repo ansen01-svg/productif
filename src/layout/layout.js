@@ -77,20 +77,24 @@ const Layout = () => {
     setIsMobileSidebarOpen(toggle);
   };
 
-  return (
-    <Box>
-      <Header
-        toggleMobileSidebar={toggleMobileSidebar}
-        setIsDesktopSidebarOpen={setIsDesktopSidebarOpen}
-      />
-      <Main
-        isDesktopSidebarOpen={isDesktopSidebarOpen}
-        desktopScreen={desktopScreen}
-        isMobileSidebarOpen={isMobileSidebarOpen}
-        toggleMobileSidebar={toggleMobileSidebar}
-      />
-    </Box>
-  );
+  if (document.readyState !== "complete") {
+    return <p>loading...</p>;
+  } else {
+    return (
+      <Box>
+        <Header
+          toggleMobileSidebar={toggleMobileSidebar}
+          setIsDesktopSidebarOpen={setIsDesktopSidebarOpen}
+        />
+        <Main
+          isDesktopSidebarOpen={isDesktopSidebarOpen}
+          desktopScreen={desktopScreen}
+          isMobileSidebarOpen={isMobileSidebarOpen}
+          toggleMobileSidebar={toggleMobileSidebar}
+        />
+      </Box>
+    );
+  }
 };
 
 export default Layout;

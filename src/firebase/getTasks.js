@@ -37,7 +37,6 @@ const fetchWeeklyTasks = async (uid) => {
       id: doc.id,
       data: doc.data(),
     }));
-
     return weeklyTasks;
   } catch (error) {
     console.log(error);
