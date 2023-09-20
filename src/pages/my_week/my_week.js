@@ -11,8 +11,7 @@ const MyWeekPage = () => {
     <Box
       sx={{
         width: "100%",
-        height: "calc(100vh - (48px + 96px))",
-        padding: "0 24px",
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
