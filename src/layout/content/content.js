@@ -8,6 +8,7 @@ const Content = () => {
     <Box
       sx={{
         flexGrow: 1,
+        height: "calc(100vh - 48px)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
