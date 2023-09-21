@@ -48,7 +48,7 @@ const TasksHolder = ({ tasks }) => {
           setShowCompletedTasksHolder={setShowCompletedTasksHolder}
         />
       )}
-      {completedTasks.length > 0 && showCompletedTasksHolder && (
+      {(completedTasks.length > 0 || showCompletedTasksHolder) && (
         <CompletedTasksHolder tasks={completedTasks} />
       )}
     </Box>

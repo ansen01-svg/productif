@@ -8,7 +8,7 @@ const TaskDisplay = () => {
   return (
     <Box
       sx={{
-        flex: 1,
+        flexGrow: 1,
         width: "100%",
       }}
     >

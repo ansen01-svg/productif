@@ -50,35 +50,4 @@ const sortOptions = [
   },
 ];
 
-const mockedDate = [
-  {
-    id: 1,
-    date: 1,
-  },
-  {
-    id: 2,
-    date: 2,
-  },
-  {
-    id: 3,
-    date: 3,
-  },
-  {
-    id: 4,
-    date: 4,
-  },
-  {
-    id: 5,
-    date: 5,
-  },
-  {
-    id: 6,
-    date: 6,
-  },
-  {
-    id: 7,
-    date: 7,
-  },
-];
-
-export { navigationItems, sortOptions, mockedDate };
+export { navigationItems, sortOptions };

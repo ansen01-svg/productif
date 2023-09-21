@@ -19,6 +19,14 @@ const ListItem = (props) => {
     >
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={navigationTitle} />
+      <ListItemText
+        primary="2"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+        }}
+      />
     </ListItemButton>
   );
 };
