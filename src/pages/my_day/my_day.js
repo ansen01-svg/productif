@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import AddTaskBar from "../../components/add_task_bar/add_task_bar";
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
 import TaskDisplay from "./tasks_display";
+import ErrorDisplayHolder from "../../components/task_fetching_error_display/error_holder";
 
 const MyDayPage = () => {
   const { sortedBy } = useSelector((state) => state.appReducer);
+  const { error } = useSelector((state) => state.firestoreReducer);
 
   return (
     <Box
@@ -20,7 +22,7 @@ const MyDayPage = () => {
     >
       {sortedBy && <SortbyDisplayHolder />}
       <AddTaskBar />
-      <TaskDisplay />
+      {error ? <ErrorDisplayHolder /> : <TaskDisplay />}
     </Box>
   );
 };

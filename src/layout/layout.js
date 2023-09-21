@@ -9,15 +9,17 @@ import {
   getFromSessionStorage,
 } from ".././utils/utils_functions";
 import { navigationItems } from ".././utils/arrays";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store_provider/app_slice";
 import {
   fetchDailyTasks,
   fetchWeeklyTasks,
 } from "../store_provider/firestore_slice";
+import Loading from "../components/loading/loading";
 
 const Layout = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.appReducer);
   const { desktopScreen } = useWindowWidth();
   const auth = getAuth();
 
@@ -77,8 +79,8 @@ const Layout = () => {
     setIsMobileSidebarOpen(toggle);
   };
 
-  if (document.readyState !== "complete") {
-    return <p>loading...</p>;
+  if (document.readyState !== "complete" || !user) {
+    return <Loading />;
   } else {
     return (
       <Box>

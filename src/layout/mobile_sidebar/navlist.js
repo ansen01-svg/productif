@@ -40,6 +40,14 @@ const NavList = () => {
             >
               <ListItemIcon>{navigationItem.icon}</ListItemIcon>
               <ListItemText primary={navigationItem.title} />
+              <ListItemText
+                primary="2"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              />
             </ListItemButton>
           </ListItem>
         );
