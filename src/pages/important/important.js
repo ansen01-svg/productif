@@ -1,18 +1,26 @@
 import { Box } from "@mui/material";
-import TextHolder from "../.././components/text_holder";
+import { useSelector } from "react-redux";
+import TaskDisplay from "../../components/tasks_display_body";
+import ErrorDisplayHolder from "../../components/task_fetching_error_display/error_holder";
+import SortbyDisplayHolder from "../../components/sortby_display_holder";
 
 const ImportantPage = () => {
+  const { sortedBy } = useSelector((state) => state.appReducer);
+  const { error } = useSelector((state) => state.firestoreReducer);
+
   return (
     <Box
       sx={{
         width: "100%",
-        // height: "calc(100vh - 48px)",
+        position: "relative",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <TextHolder variant="h2">Important</TextHolder>
+      {sortedBy && <SortbyDisplayHolder />}
+      {error ? <ErrorDisplayHolder /> : <TaskDisplay />}
     </Box>
   );
 };

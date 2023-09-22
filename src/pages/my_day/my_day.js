@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import AddTaskBar from "../../components/add_task_bar/add_task_bar";
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
-import TaskDisplay from "./tasks_display";
+import TaskDisplay from "../../components/tasks_display_body";
 import ErrorDisplayHolder from "../../components/task_fetching_error_display/error_holder";
 
 const MyDayPage = () => {
