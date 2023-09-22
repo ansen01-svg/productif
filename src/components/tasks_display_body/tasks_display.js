@@ -1,18 +1,18 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import TasksHolder from "../../components/tasks_holder/tasks_holder";
+import TasksHolder from "../tasks_holder";
 
 const TaskDisplay = () => {
-  const { weeklyTasks } = useSelector((state) => state.firestoreReducer);
+  const { dailyTasks } = useSelector((state) => state.firestoreReducer);
 
   return (
     <Box
       sx={{
-        flex: 1,
+        flexGrow: 1,
         width: "100%",
       }}
     >
-      <TasksHolder tasks={weeklyTasks} />
+      <TasksHolder tasks={dailyTasks} />
     </Box>
   );
 };
