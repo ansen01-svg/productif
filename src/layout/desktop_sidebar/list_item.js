@@ -9,6 +9,7 @@ const ListItem = (props) => {
     navigationLink,
     icon,
     navigationTitle,
+    totalTasks,
     handleClick,
   } = props;
 
@@ -20,7 +21,7 @@ const ListItem = (props) => {
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={navigationTitle} />
       <ListItemText
-        primary="2"
+        primary={totalTasks}
         sx={{
           display: "flex",
           alignItems: "center",

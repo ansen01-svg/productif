@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { navigationItems } from "../../utils/arrays";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
@@ -11,9 +10,12 @@ import {
   getFromSessionStorage,
   getPageIndex,
 } from "../../utils/utils_functions";
+import { useGetNavigationItems } from "../../hooks";
 
 const NavList = () => {
   const currentPage = getFromSessionStorage("currentPage");
+  const navigationItems = useGetNavigationItems();
+  // console.log(navigationItems);
 
   const [selectedIndex, setSelectedIndex] = useState(getPageIndex(currentPage));
 
@@ -41,7 +43,7 @@ const NavList = () => {
               <ListItemIcon>{navigationItem.icon}</ListItemIcon>
               <ListItemText primary={navigationItem.title} />
               <ListItemText
-                primary="2"
+                primary={navigationItem.totalTasks}
                 sx={{
                   display: "flex",
                   alignItems: "center",

@@ -36,7 +36,13 @@ const TaskContent = ({ id, individualTask }) => {
             : "weeklyTasks"
         }
       />
-      <ButtonHolder id={id} task={task} start={start} end={end} />
+      <ButtonHolder
+        id={id}
+        task={task}
+        start={start}
+        end={end}
+        completed={completed}
+      />
       <ImportantButtonHolder
         id={id}
         important={important}
@@ -81,7 +87,7 @@ const CheckboxHolder = ({ id, completed, collectionName }) => {
   );
 };
 
-const ButtonHolder = ({ id, task, start, end }) => {
+const ButtonHolder = ({ id, task, start, end, completed }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <button
@@ -103,7 +109,14 @@ const ButtonHolder = ({ id, task, start, end }) => {
           cursor: "pointer",
         }}
       >
-        <span>{task}</span>
+        <span
+          style={{
+            textDecoration: `${completed ? "line-through" : "none"}`,
+            color: `${completed ? "gray" : "#000"}`,
+          }}
+        >
+          {task}
+        </span>
         <div
           style={{
             display: "flex",

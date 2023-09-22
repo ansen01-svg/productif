@@ -1,7 +1,7 @@
 import { List } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { navigationItems } from "../../utils/arrays";
+import { useGetNavigationItems } from "../../hooks";
 import ListItem from "./list_item";
 import {
   storeInSessionStorage,
@@ -11,6 +11,7 @@ import {
 
 const SidebarContent = () => {
   const currentPage = getFromSessionStorage("currentPage");
+  const navigationItems = useGetNavigationItems();
 
   const [selectedIndex, setSelectedIndex] = useState(getPageIndex(currentPage));
 
@@ -42,6 +43,7 @@ const SidebarContent = () => {
             icon={navigationItem.icon}
             navigationTitle={navigationItem.title}
             navigationLink={navigationItem.link}
+            totalTasks={navigationItem.totalTasks}
             handleClick={handleClick}
           />
         );
