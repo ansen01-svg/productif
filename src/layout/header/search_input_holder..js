@@ -23,6 +23,7 @@ const SearchInputHolder = (props, ref) => {
         id="search"
         placeholder="Search"
         value={searchValue}
+        autoComplete="on"
         onChange={handleInputValueChange}
         style={{
           width: "25vw",

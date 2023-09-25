@@ -2,12 +2,17 @@ import { useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "./list_item";
 import { sortOptions } from "../../utils/arrays";
+import { useDispatch } from "react-redux";
+import { sortTasksBy } from "../../store_provider/firestore_slice";
 
 const MainList = ({ handleClose }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handleClick = (index) => {
+  const dispatch = useDispatch();
+
+  const handleClick = (index, sortBy) => {
     setSelectedIndex(index);
+    dispatch(sortTasksBy(sortBy.toLowerCase()));
     handleClose();
   };
 

@@ -32,6 +32,7 @@ const Content = ({ task, setTask }) => {
         type="text"
         placeholder="Add a task"
         value={task}
+        autoComplete="on"
         onChange={(e) => setTask(e.target.value)}
         style={{
           width: "100%",

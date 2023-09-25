@@ -1,18 +1,37 @@
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
 import TasksHolder from "../tasks_holder";
 
-const TaskDisplay = () => {
-  const { dailyTasks } = useSelector((state) => state.firestoreReducer);
+const TaskDisplay = (props) => {
+  const {
+    tasks,
+    taskHolderPadding,
+    taskHolderHeight,
+    taskHolderMinHeight,
+    showTaskNameInTaskHolder,
+    openDesktopTaskSidebar,
+    toggleMobileTaskSidebar,
+    setIsMobileTaskSidebarOpen,
+  } = props;
 
   return (
     <Box
       sx={{
         flexGrow: 1,
         width: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <TasksHolder tasks={dailyTasks} />
+      <TasksHolder
+        tasks={tasks}
+        taskHolderPadding={taskHolderPadding}
+        taskHolderHeight={taskHolderHeight}
+        taskHolderMinHeight={taskHolderMinHeight}
+        showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+        openDesktopTaskSidebar={openDesktopTaskSidebar}
+        toggleMobileTaskSidebar={toggleMobileTaskSidebar}
+        setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
+      />
     </Box>
   );
 };
