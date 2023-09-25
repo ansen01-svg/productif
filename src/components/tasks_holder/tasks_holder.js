@@ -4,7 +4,18 @@ import UncompletedTasksHolder from "./uncompleted_tasks_holder";
 import CompletedTasksHolder from "./completed_tasks_holder";
 import TaskStatusTitleBar from "./task_status_titlebar";
 
-const TasksHolder = ({ tasks }) => {
+const TasksHolder = (props) => {
+  const {
+    tasks,
+    taskHolderPadding,
+    taskHolderHeight,
+    taskHolderMinHeight,
+    showTaskNameInTaskHolder,
+    openDesktopTaskSidebar,
+    toggleMobileTaskSidebar,
+    setIsMobileTaskSidebarOpen,
+  } = props;
+
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
 
@@ -29,9 +40,9 @@ const TasksHolder = ({ tasks }) => {
     <Box
       sx={{
         flexGrow: 1,
-        minHeight: "425px",
-        maxHeight: "467px",
-        padding: "24px 16px 24px 24px",
+        height: taskHolderHeight,
+        minHeight: taskHolderMinHeight,
+        padding: taskHolderPadding,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -41,7 +52,13 @@ const TasksHolder = ({ tasks }) => {
       }}
     >
       {uncompletedTasks.length > 0 && (
-        <UncompletedTasksHolder tasks={uncompletedTasks} />
+        <UncompletedTasksHolder
+          tasks={uncompletedTasks}
+          showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+          openDesktopTaskSidebar={openDesktopTaskSidebar}
+          toggleMobileTaskSidebar={toggleMobileTaskSidebar}
+          setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
+        />
       )}
       {completedTasks.length > 0 && (
         <TaskStatusTitleBar
@@ -67,7 +84,13 @@ const TasksHolder = ({ tasks }) => {
             },
           }}
         >
-          <CompletedTasksHolder tasks={completedTasks} />
+          <CompletedTasksHolder
+            tasks={completedTasks}
+            showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+            openDesktopTaskSidebar={openDesktopTaskSidebar}
+            toggleMobileTaskSidebar={toggleMobileTaskSidebar}
+            setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
+          />
         </Collapse>
       )}
     </Box>

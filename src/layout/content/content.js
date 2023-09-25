@@ -3,7 +3,13 @@ import { Box } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import PageHeader from "../page_header";
 
-const Content = () => {
+const Content = (props) => {
+  const {
+    openDesktopTaskSidebar,
+    toggleMobileTaskSidebar,
+    setIsMobileTaskSidebarOpen,
+  } = props;
+
   return (
     <Box
       sx={{
@@ -29,7 +35,13 @@ const Content = () => {
         pauseOnHover
         theme="light"
       />
-      <Outlet />
+      <Outlet
+        context={[
+          openDesktopTaskSidebar,
+          toggleMobileTaskSidebar,
+          setIsMobileTaskSidebarOpen,
+        ]}
+      />
     </Box>
   );
 };

@@ -5,12 +5,17 @@ import ErrorDisplayHolder from "../../components/task_fetching_error_display/err
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
 
 const TasksPage = () => {
-  const { sortedBy } = useSelector((state) => state.appReducer);
-  const { error } = useSelector((state) => state.firestoreReducer);
+  const { sortedBy } = useSelector((state) => state.firestoreReducer);
+  const { error, dailyTasks, weeklyTasks } = useSelector(
+    (state) => state.firestoreReducer
+  );
+
+  const tasks = [...dailyTasks, ...weeklyTasks];
 
   return (
     <Box
       sx={{
+        flexGrow: 1,
         width: "100%",
         position: "relative",
         display: "flex",
@@ -20,7 +25,17 @@ const TasksPage = () => {
       }}
     >
       {sortedBy && <SortbyDisplayHolder />}
-      {error ? <ErrorDisplayHolder /> : <TaskDisplay />}
+      {error ? (
+        <ErrorDisplayHolder />
+      ) : (
+        <TaskDisplay
+          tasks={tasks}
+          taskHolderPadding="0px 16px 24px 24px"
+          taskHolderHeight="515px"
+          taskHolderMinHeight="475px"
+          showTaskNameInTaskHolder={true}
+        />
+      )}
     </Box>
   );
 };

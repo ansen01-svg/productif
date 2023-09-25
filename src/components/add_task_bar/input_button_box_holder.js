@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { useGetLocation } from "../../hooks";
 import InputBox from "./input_box";
 import ButtonBox from "./button_box";
-import { generateWeek } from "../../utils/utils_functions";
 import { addDailyTasks, addWeeklyTasks } from "../../firebase/addTasks";
 import {
   fetchDailyTasks,
@@ -71,37 +70,31 @@ const TaskForm = ({ setShowInputBox }) => {
       const hrs = currentTime.split(":")[0];
       const mins = currentTime.split(":")[1];
 
-      if (!fromHrsValue || !fromMinsValue || !toHrsValue || !toMinsValue) {
-        const time = moment().format("LT");
-        const startHrs = time.split(":")[0];
-        const startMins = time.split(":")[1].split(" ")[0];
-        const meridiem = +startHrs < 12 ? "AM" : "PM";
+      const isEmptyValues =
+        !fromHrsValue && !fromMinsValue && !toHrsValue && !toMinsValue;
 
-        addDailyTasks(
-          "dailyTasks",
-          task,
-          startHrs,
-          startMins,
-          "00",
-          "00",
-          meridiem,
-          "AM"
-        );
+      const isInvalidTime =
+        Number(`${toHrsValue}.${toMinsValue}`) -
+          Number(`${fromHrsValue}.${fromMinsValue}`) <
+        0;
+
+      const isMissingValues =
+        !fromHrsValue || !fromMinsValue || !toHrsValue || !toMinsValue;
+
+      const isPastTime =
+        Number(`${fromHrsValue}.${fromMinsValue}`) < Number(`${hrs}.${mins}`);
+
+      if (isEmptyValues) {
+        addDailyTasks("dailyTasks", task, "00", "00", "00", "00", "AM", "AM");
         dispatch(fetchDailyTasks());
         setTask("");
         setFromHrsValue("");
         setFromMinsValue("");
         setToHrsValue("");
         setToMinsValue("");
-      } else if (
-        Number(`${toHrsValue}.${toMinsValue}`) -
-          Number(`${fromHrsValue}.${fromMinsValue}`) <
-        0
-      ) {
+      } else if (isInvalidTime || isMissingValues) {
         toast("Invalid time, set a proper time");
-      } else if (
-        Number(`${fromHrsValue}.${fromMinsValue}`) < Number(`${hrs}.${mins}`)
-      ) {
+      } else if (isPastTime) {
         toast("Invalid time, set a proper time");
       } else {
         const startMeridiem = +fromHrsValue < 12 ? "AM" : "PM";
@@ -125,18 +118,18 @@ const TaskForm = ({ setShowInputBox }) => {
         setToMinsValue("");
       }
     } else {
-      if (!startDate || !endDate) {
-        const weekDays = generateWeek();
+      const isEmptyValues = !startDate || !endDate;
 
-        addWeeklyTasks("weeklyTasks", weekDays[0].day, weekDays[6].day, task);
+      const isInvalidDate =
+        Number(endDate.split(" ")[0]) - Number(startDate.split(" ")[0]) < 0;
+
+      if (isEmptyValues) {
+        addWeeklyTasks("weeklyTasks", "0", "0", task);
         dispatch(fetchWeeklyTasks());
         setTask("");
         setStartDate("");
         setEndDate("");
-      } else if (
-        Number(endDate.split(" ")[0]) - Number(startDate.split(" ")[0]) <
-        0
-      ) {
+      } else if (isInvalidDate) {
         toast("Invalid date, set a proper date");
       } else {
         addWeeklyTasks("weeklyTasks", startDate, endDate, task);

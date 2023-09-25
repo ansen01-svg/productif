@@ -9,6 +9,15 @@ const useGetNavigationItems = () => {
     (state) => state.firestoreReducer
   );
 
+  const todaysTasks = dailyTasks.filter(
+    (task) =>
+      Number(
+        new Date(task.data.created.seconds * 1000)
+          .toLocaleDateString()
+          .split("/")[1]
+      ) === new Date().getDate()
+  );
+
   const totalTasks = dailyTasks.length + weeklyTasks.length;
 
   const impDailyTasks = dailyTasks.filter(
@@ -26,7 +35,7 @@ const useGetNavigationItems = () => {
       id: 0,
       title: "My Day",
       link: "/",
-      totalTasks: dailyTasks.length < 1 ? "" : String(dailyTasks.length),
+      totalTasks: todaysTasks.length < 1 ? "" : String(todaysTasks.length),
       icon: <LightModeOutlinedIcon fontSize="medium" />,
     },
     {

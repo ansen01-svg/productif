@@ -12,7 +12,7 @@ const ListItem = (props) => {
         },
       }}
       selected={selectedIndex === index}
-      onClick={() => handleClick(0)}
+      onClick={() => handleClick(0, title)}
     >
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={title} />

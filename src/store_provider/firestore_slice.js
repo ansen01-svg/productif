@@ -16,12 +16,17 @@ const initialState = {
   weeklyTasks: [],
   status: "idle",
   error: null,
+  sortedBy: null,
 };
 
 const firestoreSlice = createSlice({
   name: "firestore",
   initialState,
-  reducers: {},
+  reducers: {
+    sortTasksBy: (state, { payload }) => {
+      state.sortedBy = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchDailyTasks.pending, (state) => {
@@ -48,5 +53,7 @@ const firestoreSlice = createSlice({
       });
   },
 });
+
+export const { sortTasksBy } = firestoreSlice.actions;
 
 export default firestoreSlice.reducer;

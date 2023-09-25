@@ -1,9 +1,11 @@
 import { Box } from "@mui/material";
+import { useRef, useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";
+// import moment from "moment";
 import {
   changeTaskStatus,
   changeTaskImportance,
@@ -13,8 +15,16 @@ import {
   fetchDailyTasks,
   fetchWeeklyTasks,
 } from "../../store_provider/firestore_slice";
+import { useWindowWidth } from "../../hooks";
 
-const TaskContent = ({ id, individualTask }) => {
+const TaskContent = (props) => {
+  const {
+    id,
+    individualTask,
+    showTaskNameInTaskHolder,
+    openDesktopTaskSidebar,
+    toggleMobileTaskSidebar,
+  } = props;
   const { task, start, end, completed, important } = individualTask;
 
   return (
@@ -42,6 +52,9 @@ const TaskContent = ({ id, individualTask }) => {
         start={start}
         end={end}
         completed={completed}
+        showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+        openDesktopTaskSidebar={openDesktopTaskSidebar}
+        toggleMobileTaskSidebar={toggleMobileTaskSidebar}
       />
       <ImportantButtonHolder
         id={id}
@@ -87,10 +100,36 @@ const CheckboxHolder = ({ id, completed, collectionName }) => {
   );
 };
 
-const ButtonHolder = ({ id, task, start, end, completed }) => {
+const ButtonHolder = (props) => {
+  const {
+    id,
+    task,
+    start,
+    end,
+    completed,
+    showTaskNameInTaskHolder,
+    openDesktopTaskSidebar,
+    toggleMobileTaskSidebar,
+  } = props;
+
+  const { desktopScreen } = useWindowWidth();
+
+  let handleClick = useRef(null);
+
+  useEffect(() => {
+    if (!desktopScreen) {
+      handleClick.current = toggleMobileTaskSidebar((state) => !state);
+    } else {
+      handleClick.current = function () {
+        openDesktopTaskSidebar(id);
+      };
+    }
+  }, [desktopScreen, id, toggleMobileTaskSidebar, openDesktopTaskSidebar]);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <button
+        onClick={() => handleClick}
         style={{
           width: "100%",
           padding: "0 10px",
@@ -117,20 +156,94 @@ const ButtonHolder = ({ id, task, start, end, completed }) => {
         >
           {task}
         </span>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "5px",
-          }}
-        >
-          <span style={{ color: "gray", fontSize: "0.75rem" }}>{start}</span>
-          <span style={{ color: "gray", fontSize: "0.75rem" }}>to</span>
-          <span style={{ color: "gray", fontSize: "0.75rem" }}>{end}</span>
-        </div>
+        <TaskDetailsHolder
+          start={start}
+          end={end}
+          showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+        />
       </button>
     </Box>
+  );
+};
+
+const TaskDetailsHolder = (props) => {
+  const { start, end, showTaskNameInTaskHolder } = props;
+
+  const isNotValidStartDateOrTime =
+    (start.includes("M") && Number(`${start.split(":")[0]}`) === 0) ||
+    Number(start) === 0;
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "5px",
+      }}
+    >
+      {showTaskNameInTaskHolder &&
+        (start.includes("M") ? (
+          <span style={{ color: "gray", fontSize: "0.75rem" }}>My Day,</span>
+        ) : (
+          <span style={{ color: "gray", fontSize: "0.75rem" }}>My Week,</span>
+        ))}
+      {!isNotValidStartDateOrTime && (
+        <TimeHolderSpan
+          start={start}
+          end={end}
+          showTaskNameInTaskHolder={showTaskNameInTaskHolder}
+        />
+      )}
+    </div>
+  );
+};
+
+const TimeHolderSpan = (props) => {
+  const { start, end } = props;
+
+  // calculate if the tasks are past due time or date
+  // const knowOverdue = () => {
+  //   const currentTime = moment().format("H:mm");
+  //   const endTime = `${end.split(":")[0]}.${end.split(":")[1].split(" ")[0]}`;
+  //   const presentTime = `${currentTime.split(":")[0]}.${
+  //     currentTime.split(":")[1]
+  //   }`;
+  //   let overDue;
+
+  //   if (end.includes("AM")) {
+  //     if (end.includes("00:00")) {
+  //       console.log(end);
+  //       overDue = false;
+  //     } else if (Number(endTime) - Number(presentTime) < 0) {
+  //       console.log(endTime - presentTime);
+  //       overDue = true;
+  //     } else {
+  //       console.log(endTime - presentTime);
+  //       overDue = false;
+  //     }
+  //   } else {
+  //     return;
+  //   }
+  //   return overDue;
+  // };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "5px",
+      }}
+    >
+      {/* {knowOverdue() && (
+            <span style={{ color: "red", fontSize: "0.75rem" }}>Overdue</span>
+          )} */}
+      <span style={{ color: "gray", fontSize: "0.75rem" }}>{start}</span>
+      <span style={{ color: "gray", fontSize: "0.75rem" }}>to</span>
+      <span style={{ color: "gray", fontSize: "0.75rem" }}>{end}</span>
+    </div>
   );
 };
 
