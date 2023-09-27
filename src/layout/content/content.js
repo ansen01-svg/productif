@@ -4,11 +4,7 @@ import { ToastContainer } from "react-toastify";
 import PageHeader from "../page_header";
 
 const Content = (props) => {
-  const {
-    openDesktopTaskSidebar,
-    toggleMobileTaskSidebar,
-    setIsMobileTaskSidebarOpen,
-  } = props;
+  const { openDesktopTaskSidebar, toggleMobileTaskSidebar } = props;
 
   return (
     <Box
@@ -35,13 +31,7 @@ const Content = (props) => {
         pauseOnHover
         theme="light"
       />
-      <Outlet
-        context={[
-          openDesktopTaskSidebar,
-          toggleMobileTaskSidebar,
-          setIsMobileTaskSidebarOpen,
-        ]}
-      />
+      <Outlet context={[openDesktopTaskSidebar, toggleMobileTaskSidebar]} />
     </Box>
   );
 };

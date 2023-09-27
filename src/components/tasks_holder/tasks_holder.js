@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Box, Collapse } from "@mui/material";
-import UncompletedTasksHolder from "./uncompleted_tasks_holder";
-import CompletedTasksHolder from "./completed_tasks_holder";
+import TasksHolderSection from "./task_holder_section";
 import TaskStatusTitleBar from "./task_status_titlebar";
 
 const TasksHolder = (props) => {
@@ -13,7 +12,6 @@ const TasksHolder = (props) => {
     showTaskNameInTaskHolder,
     openDesktopTaskSidebar,
     toggleMobileTaskSidebar,
-    setIsMobileTaskSidebarOpen,
   } = props;
 
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
@@ -36,6 +34,11 @@ const TasksHolder = (props) => {
     setOpen(!open);
   };
 
+  // conditions check
+  const showUncompletedTasksSection = uncompletedTasks.length > 0;
+  const showTaskStatusBar = completedTasks.length > 0;
+  const showCompletedTasksSection = completedTasks.length > 0 || open;
+
   return (
     <Box
       sx={{
@@ -51,16 +54,15 @@ const TasksHolder = (props) => {
         overflowY: "scroll",
       }}
     >
-      {uncompletedTasks.length > 0 && (
-        <UncompletedTasksHolder
+      {showUncompletedTasksSection && (
+        <TasksHolderSection
           tasks={uncompletedTasks}
           showTaskNameInTaskHolder={showTaskNameInTaskHolder}
           openDesktopTaskSidebar={openDesktopTaskSidebar}
           toggleMobileTaskSidebar={toggleMobileTaskSidebar}
-          setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
         />
       )}
-      {completedTasks.length > 0 && (
+      {showTaskStatusBar && (
         <TaskStatusTitleBar
           title="Completed"
           totalTasks={completedTasks.length}
@@ -68,7 +70,7 @@ const TasksHolder = (props) => {
           showCompletedTasks={showCompletedTasks}
         />
       )}
-      {(completedTasks.length > 0 || open) && (
+      {showCompletedTasksSection && (
         <Collapse
           in={open}
           timeout="auto"
@@ -84,12 +86,11 @@ const TasksHolder = (props) => {
             },
           }}
         >
-          <CompletedTasksHolder
+          <TasksHolderSection
             tasks={completedTasks}
             showTaskNameInTaskHolder={showTaskNameInTaskHolder}
             openDesktopTaskSidebar={openDesktopTaskSidebar}
             toggleMobileTaskSidebar={toggleMobileTaskSidebar}
-            setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
           />
         </Collapse>
       )}

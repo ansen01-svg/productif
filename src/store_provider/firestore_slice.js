@@ -14,6 +14,7 @@ export const fetchWeeklyTasks = createAsyncThunk(
 const initialState = {
   dailyTasks: [],
   weeklyTasks: [],
+  placeholderTaskId: null,
   status: "idle",
   error: null,
   sortedBy: null,
@@ -25,6 +26,10 @@ const firestoreSlice = createSlice({
   reducers: {
     sortTasksBy: (state, { payload }) => {
       state.sortedBy = payload;
+    },
+    setPlaceHolderTaskId: (state, { payload }) => {
+      if (payload === undefined) return;
+      state.placeholderTaskId = payload;
     },
   },
   extraReducers: (builder) => {
@@ -54,6 +59,6 @@ const firestoreSlice = createSlice({
   },
 });
 
-export const { sortTasksBy } = firestoreSlice.actions;
+export const { sortTasksBy, setPlaceHolderTaskId } = firestoreSlice.actions;
 
 export default firestoreSlice.reducer;

@@ -1,5 +1,5 @@
 import Drawer from "@mui/material/Drawer";
-import Content from "./content";
+import TaskSidebarContent from "../desktop_task_sidebar/task_sidebar_content";
 
 const MobileTaskSidebar = (props) => {
   const { isMobileTaskSidebarOpen, toggleMobileTaskSidebar } = props;
@@ -11,12 +11,17 @@ const MobileTaskSidebar = (props) => {
       onClose={toggleMobileTaskSidebar()}
       sx={{
         top: "48px",
-        "& .MuiBackdrop-root, .MuiPaper-root": {
+        "& .MuiBackdrop-root": {
           top: "48px",
+        },
+        "& .MuiPaper-root": {
+          top: "48px",
+          width: "390px",
+          bgcolor: "effects.background",
         },
       }}
     >
-      <Content toggleMobileTaskSidebar={toggleMobileTaskSidebar} />
+      <TaskSidebarContent toggleMobileTaskSidebar={toggleMobileTaskSidebar} />
     </Drawer>
   );
 };

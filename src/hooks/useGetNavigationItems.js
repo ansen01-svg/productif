@@ -36,28 +36,48 @@ const useGetNavigationItems = () => {
       title: "My Day",
       link: "/",
       totalTasks: todaysTasks.length < 1 ? "" : String(todaysTasks.length),
-      icon: <LightModeOutlinedIcon fontSize="medium" />,
+      icon: (
+        <LightModeOutlinedIcon
+          fontSize="medium"
+          sx={{ color: "rgba(0,0,0,0.6)" }}
+        />
+      ),
     },
     {
       id: 1,
       title: "My Week",
       link: "/my-week",
       totalTasks: weeklyTasks.length < 1 ? "" : String(weeklyTasks.length),
-      icon: <CalendarTodayOutlinedIcon fontSize="medium" />,
+      icon: (
+        <CalendarTodayOutlinedIcon
+          fontSize="medium"
+          sx={{ color: "rgba(0,0,0,0.6)" }}
+        />
+      ),
     },
     {
       id: 2,
       title: "Important",
       link: "/important",
       totalTasks: totalImportantTasks === 0 ? "" : String(totalImportantTasks),
-      icon: <StarOutlineOutlinedIcon fontSize="medium" />,
+      icon: (
+        <StarOutlineOutlinedIcon
+          fontSize="medium"
+          sx={{ color: "rgba(0,0,0,0.6)" }}
+        />
+      ),
     },
     {
       id: 3,
       title: "Tasks",
       link: "/tasks",
       totalTasks: totalTasks === 0 ? "" : totalTasks,
-      icon: <AssignmentOutlinedIcon fontSize="medium" />,
+      icon: (
+        <AssignmentOutlinedIcon
+          fontSize="medium"
+          sx={{ color: "rgba(0,0,0,0.6)" }}
+        />
+      ),
     },
   ];
 

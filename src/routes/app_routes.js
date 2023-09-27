@@ -15,6 +15,7 @@ const MyWeek = lazy(() => import("../pages/my_week"));
 const Important = lazy(() => import("../pages/important"));
 const Tasks = lazy(() => import("../pages/tasks"));
 const NotFound = lazy(() => import("../pages/not_found"));
+// const Placeholder = lazy(() => import("../layout/desktop_task_sidebar"));
 
 const AppRouter = () => {
   const { mode } = useSelector((state) => state.appReducer);
@@ -70,6 +71,15 @@ const AppRouter = () => {
               />
             }
           />
+          {/* <Route
+            path="id/:id"
+            element={
+              <SuspendedComponent
+                fallback={<LoadingFallback />}
+                component={<Placeholder />}
+              />
+            }
+          /> */}
         </Route>
         <Route path="/login" element={<Login />} />
         <Route

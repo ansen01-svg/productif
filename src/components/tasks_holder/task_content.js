@@ -1,6 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, ListItem, Checkbox } from "@mui/material";
 import { useRef, useEffect } from "react";
-import Checkbox from "@mui/material/Checkbox";
 import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
@@ -17,7 +16,7 @@ import {
 } from "../../store_provider/firestore_slice";
 import { useWindowWidth } from "../../hooks";
 
-const TaskContent = (props) => {
+const TaskListItem = (props) => {
   const {
     id,
     individualTask,
@@ -25,16 +24,23 @@ const TaskContent = (props) => {
     openDesktopTaskSidebar,
     toggleMobileTaskSidebar,
   } = props;
+
   const { task, start, end, completed, important } = individualTask;
 
   return (
-    <Box
-      id={id}
+    <ListItem
       sx={{
         width: "100%",
+        minHeight: "52px",
+        padding: "0 10px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        backgroundColor: "taskHolder.main",
+        color: "taskHolder.contrastText",
+        zIndex: props.zIndex,
+        boxShadow:
+          "0px 0.3px 0.9px rgba(0,0,0,0.1),0px 1.6px 3.6px rgba(0,0,0,0.1)",
       }}
     >
       <CheckboxHolder
@@ -65,7 +71,7 @@ const TaskContent = (props) => {
             : "weeklyTasks"
         }
       />
-    </Box>
+    </ListItem>
   );
 };
 
@@ -118,18 +124,27 @@ const ButtonHolder = (props) => {
 
   useEffect(() => {
     if (!desktopScreen) {
-      handleClick.current = toggleMobileTaskSidebar((state) => !state);
+      handleClick.current = toggleMobileTaskSidebar(id);
     } else {
-      handleClick.current = function () {
+      handleClick.current = function (id) {
         openDesktopTaskSidebar(id);
       };
     }
   }, [desktopScreen, id, toggleMobileTaskSidebar, openDesktopTaskSidebar]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        gap: "5px",
+      }}
+    >
       <button
-        onClick={() => handleClick}
+        onClick={() => handleClick.current(id)}
         style={{
           width: "100%",
           padding: "0 10px",
@@ -274,4 +289,4 @@ const ImportantButtonHolder = ({ id, collectionName, important }) => {
   );
 };
 
-export default TaskContent;
+export default TaskListItem;

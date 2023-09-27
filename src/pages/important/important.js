@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 import TaskDisplay from "../../components/tasks_display_body";
 import ErrorDisplayHolder from "../../components/task_fetching_error_display/error_holder";
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
@@ -9,6 +10,8 @@ const ImportantPage = () => {
   const { error, dailyTasks, weeklyTasks } = useSelector(
     (state) => state.firestoreReducer
   );
+
+  const [openDesktopTaskSidebar, toggleMobileTaskSidebar] = useOutletContext();
 
   const getImportantTasks = () => {
     const dailyImportantTasks = dailyTasks.filter(
@@ -44,6 +47,8 @@ const ImportantPage = () => {
           taskHolderHeight="515px"
           taskHolderMinHeight="475px"
           showTaskNameInTaskHolder={true}
+          openDesktopTaskSidebar={openDesktopTaskSidebar}
+          toggleMobileTaskSidebar={toggleMobileTaskSidebar}
         />
       )}
     </Box>
