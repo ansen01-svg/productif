@@ -15,7 +15,6 @@ import { useGetNavigationItems } from "../../hooks";
 const NavList = () => {
   const currentPage = getFromSessionStorage("currentPage");
   const navigationItems = useGetNavigationItems();
-  // console.log(navigationItems);
 
   const [selectedIndex, setSelectedIndex] = useState(getPageIndex(currentPage));
 

@@ -10,11 +10,7 @@ const MyDayPage = () => {
   const { sortedBy } = useSelector((state) => state.firestoreReducer);
   const { error, dailyTasks } = useSelector((state) => state.firestoreReducer);
 
-  const [
-    openDesktopTaskSidebar,
-    toggleMobileTaskSidebar,
-    setIsMobileTaskSidebarOpen,
-  ] = useOutletContext();
+  const [openDesktopTaskSidebar, toggleMobileTaskSidebar] = useOutletContext();
 
   const todaysTasks = dailyTasks.filter(
     (task) =>
@@ -49,7 +45,6 @@ const MyDayPage = () => {
           taskHolderMinHeight="377px"
           openDesktopTaskSidebar={openDesktopTaskSidebar}
           toggleMobileTaskSidebar={toggleMobileTaskSidebar}
-          setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
         />
       )}
     </Box>

@@ -10,7 +10,6 @@ const TaskDisplay = (props) => {
     showTaskNameInTaskHolder,
     openDesktopTaskSidebar,
     toggleMobileTaskSidebar,
-    setIsMobileTaskSidebarOpen,
   } = props;
 
   return (
@@ -30,7 +29,6 @@ const TaskDisplay = (props) => {
         showTaskNameInTaskHolder={showTaskNameInTaskHolder}
         openDesktopTaskSidebar={openDesktopTaskSidebar}
         toggleMobileTaskSidebar={toggleMobileTaskSidebar}
-        setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
       />
     </Box>
   );

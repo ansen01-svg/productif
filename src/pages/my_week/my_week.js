@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 import AddTaskBar from "../../components/add_task_bar/add_task_bar";
 import SortbyDisplayHolder from "../../components/sortby_display_holder";
 import TaskDisplay from "../../components/tasks_display_body";
@@ -9,6 +10,8 @@ import ErrorDisplayHolder from "../../components/task_fetching_error_display/err
 const MyWeekPage = () => {
   const { sortedBy } = useSelector((state) => state.firestoreReducer);
   const { error, weeklyTasks } = useSelector((state) => state.firestoreReducer);
+
+  const [openDesktopTaskSidebar, toggleMobileTaskSidebar] = useOutletContext();
 
   // const getTasksForOneWeek = () => {
   //   let tasks = weeklyTasks.filter((task) => {
@@ -83,6 +86,8 @@ const MyWeekPage = () => {
           taskHolderPadding="24px 16px 24px 24px"
           taskHolderHeight="463px"
           taskHolderMinHeight="377px"
+          openDesktopTaskSidebar={openDesktopTaskSidebar}
+          toggleMobileTaskSidebar={toggleMobileTaskSidebar}
         />
       )}
     </Box>
