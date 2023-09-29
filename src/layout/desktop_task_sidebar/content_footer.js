@@ -1,13 +1,12 @@
 import { Box } from "@mui/material";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Button from "../../components/button";
 import TextHolder from "../../components/text_holder";
 
 const TaskSidebarContentFooter = ({ task }) => {
   // task created date
-  let date = new Date(task && task.created.seconds * 1000);
+  let date = new Date(task && task.data.created.seconds * 1000);
   date.setMilliseconds(
-    date.getMilliseconds() + task && task.created.nanoseconds / 1e6
+    date.getMilliseconds() + task && task.data.created.nanoseconds / 1e6
   );
 
   return (
@@ -31,17 +30,17 @@ const TaskSidebarContentFooter = ({ task }) => {
       )}
       <Button
         bgColor="inherit"
-        size="medium"
+        size="small"
         borderRadius="0"
         boxShadow="none"
         minWidth="40px"
         hoverColor="inherit"
         hoverShadow="none"
+        fontSize="0.928rem"
+        textTransform="capitalize"
+        textColor="black"
       >
-        <DeleteOutlineOutlinedIcon
-          fontSize="medium"
-          sx={{ color: "rgba(0,0,0,0.6)" }}
-        />
+        <TextHolder>delete task</TextHolder>
       </Button>
     </Box>
   );

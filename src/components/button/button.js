@@ -24,6 +24,7 @@ const Button = (props) => {
     color,
     fontWeight,
     flexGrow,
+    textColor,
   } = props;
 
   const buttonStyles = {
@@ -32,6 +33,7 @@ const Button = (props) => {
     minWidth: minWidth,
     height: height,
     bgcolor: bgColor,
+    color: textColor,
     padding: padding,
     boxShadow: boxShadow,
     fontWeight: fontWeight,

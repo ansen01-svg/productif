@@ -1,12 +1,7 @@
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
 import TaskSidebarContent from "./task_sidebar_content";
 
 const DesktopTaskSidebar = ({ setIsDesktopTaskSidebarOpen }) => {
-  const { placeholderTaskId, dailyTasks, weeklyTasks } = useSelector(
-    (state) => state.firestoreReducer
-  );
-
   return (
     <Box
       component="aside"

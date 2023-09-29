@@ -22,7 +22,7 @@ const TaskSidebarContent = (props) => {
       (task) => task.id === placeholderTaskId
     );
 
-    setTask(particularTask.data);
+    setTask(particularTask);
 
     return () => {
       setTask(null);
