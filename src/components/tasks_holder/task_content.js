@@ -1,20 +1,9 @@
-import { Box, ListItem, Checkbox } from "@mui/material";
+import { Box, ListItem } from "@mui/material";
 import { useRef, useEffect } from "react";
-import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
-import StarIcon from "@mui/icons-material/Star";
-// import moment from "moment";
-import {
-  changeTaskStatus,
-  changeTaskImportance,
-} from "../../firebase/editTask";
-import { useDispatch } from "react-redux";
-import {
-  fetchDailyTasks,
-  fetchWeeklyTasks,
-} from "../../store_provider/firestore_slice";
 import { useWindowWidth } from "../../hooks";
+import CheckboxHolder from "../checkbox";
+import ImportantCheckbox from "../important_checkbox";
+// import moment from "moment";
 
 const TaskListItem = (props) => {
   const {
@@ -47,9 +36,7 @@ const TaskListItem = (props) => {
         id={id}
         completed={completed}
         collectionName={
-          start.includes("PM") || start.includes("AM")
-            ? "dailyTasks"
-            : "weeklyTasks"
+          task && (start.includes("M") ? "dailyTasks" : "weeklyTasks")
         }
       />
       <ButtonHolder
@@ -62,47 +49,14 @@ const TaskListItem = (props) => {
         openDesktopTaskSidebar={openDesktopTaskSidebar}
         toggleMobileTaskSidebar={toggleMobileTaskSidebar}
       />
-      <ImportantButtonHolder
+      <ImportantCheckbox
         id={id}
         important={important}
         collectionName={
-          start.includes("PM") || start.includes("AM")
-            ? "dailyTasks"
-            : "weeklyTasks"
+          task && (start.includes("M") ? "dailyTasks" : "weeklyTasks")
         }
       />
     </ListItem>
-  );
-};
-
-const CheckboxHolder = ({ id, completed, collectionName }) => {
-  const dispatch = useDispatch();
-  const label = { inputProps: { "aria-label": "Complete-task" } };
-
-  // change task completion status
-  const handleChange = (id, task, isCompleted) => {
-    changeTaskStatus(id, task, isCompleted);
-
-    if (task === "dailyTasks") {
-      dispatch(fetchDailyTasks());
-    } else {
-      dispatch(fetchWeeklyTasks());
-    }
-  };
-
-  return (
-    <Box component="span">
-      <Checkbox
-        {...label}
-        icon={<Brightness1OutlinedIcon fontSize="small" />}
-        checkedIcon={<CheckCircleIcon fontSize="small" />}
-        sx={{
-          color: "#1976d2",
-        }}
-        checked={completed}
-        onChange={() => handleChange(id, collectionName, completed)}
-      />
-    </Box>
   );
 };
 
@@ -165,6 +119,7 @@ const ButtonHolder = (props) => {
       >
         <span
           style={{
+            fontSize: "0.928rem",
             textDecoration: `${completed ? "line-through" : "none"}`,
             color: `${completed ? "gray" : "#000"}`,
           }}
@@ -259,33 +214,6 @@ const TimeHolderSpan = (props) => {
       <span style={{ color: "gray", fontSize: "0.75rem" }}>to</span>
       <span style={{ color: "gray", fontSize: "0.75rem" }}>{end}</span>
     </div>
-  );
-};
-
-const ImportantButtonHolder = ({ id, collectionName, important }) => {
-  const dispatch = useDispatch();
-  const label = { inputProps: { "aria-label": "Complete-task" } };
-
-  const handleChange = (id, task, isImportant) => {
-    changeTaskImportance(id, task, isImportant);
-
-    if (task === "dailyTasks") {
-      dispatch(fetchDailyTasks());
-    } else {
-      dispatch(fetchWeeklyTasks());
-    }
-  };
-
-  return (
-    <Box>
-      <Checkbox
-        {...label}
-        icon={<StarBorderOutlinedIcon fontSize="small" />}
-        checkedIcon={<StarIcon fontSize="small" />}
-        checked={important}
-        onChange={() => handleChange(id, collectionName, important)}
-      />
-    </Box>
   );
 };
 

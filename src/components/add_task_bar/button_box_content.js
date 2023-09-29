@@ -1,11 +1,6 @@
-import { useState } from "react";
 import { Box } from "@mui/material";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
 import { useGetLocation } from "../../hooks";
 import PopOver from "./popover";
-import Button from "../button";
-import TextHolder from "../text_holder";
 
 const Content = ({
   task,
@@ -21,32 +16,18 @@ const Content = ({
   endDate,
   setStartDate,
   setEndDate,
+  component1,
+  component2,
+  component3,
+  handleClose,
+  id,
+  open,
+  anchorEl,
 }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
   const { pageLocation } = useGetLocation();
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
-  const startTime =
-    fromHrsValue && fromMinsValue
-      ? `${fromHrsValue} : ${fromMinsValue} ${
-          fromHrsValue < 12 ? "A.M" : "P.M"
-        }`
-      : "";
-  const endTime =
-    toHrsValue && toMinsValue
-      ? `${toHrsValue} : ${toMinsValue} ${toHrsValue < 12 ? "A.M" : "P.M"}`
-      : "";
+  const isMyWeekPage = pageLocation === "My Week";
+  const isMyDayPage = pageLocation === "My Day";
 
   return (
     <Box
@@ -57,26 +38,10 @@ const Content = ({
         justifyContent: "space-between",
       }}
     >
-      {pageLocation === "My Week" && (
-        <DueButtonHolder
-          handleClick={handleClick}
-          value1={startDate}
-          value2={endDate}
-        >
-          <CalendarTodayOutlinedIcon fontSize="small" />
-        </DueButtonHolder>
-      )}
-      {pageLocation === "My Day" && (
-        <DueButtonHolder
-          handleClick={handleClick}
-          value1={startTime}
-          value2={endTime}
-        >
-          <ScheduleOutlinedIcon fontSize="small" />
-        </DueButtonHolder>
-      )}
-      <AddButtonHolder task={task} />
-      {pageLocation === "My Week" && (
+      {isMyWeekPage && component1}
+      {isMyDayPage && component2}
+      {component3 && component3}
+      {isMyWeekPage && (
         <PopOver
           name="week"
           popoverTitle="Due date"
@@ -90,7 +55,7 @@ const Content = ({
           setEndDate={setEndDate}
         />
       )}
-      {pageLocation === "My Day" && (
+      {isMyDayPage && (
         <PopOver
           name="day"
           popoverTitle="Due time"
@@ -108,56 +73,6 @@ const Content = ({
           handleToMinsChange={handleToMinsChange}
         />
       )}
-    </Box>
-  );
-};
-
-const DueButtonHolder = ({ children, handleClick, value1, value2 }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignitems: "center",
-        justifyContent: "center",
-        gap: "10px",
-      }}
-    >
-      <Button
-        bgColor="inherit"
-        size="small"
-        borderRadius="0"
-        boxShadow="none"
-        minWidth="40px"
-        hoverColor="searchInputColor.buttonHover"
-        hoverShadow="none"
-        onClick={handleClick}
-      >
-        {children}
-      </Button>
-      {value1 && value2 && (
-        <Box component="span">
-          <TextHolder variant="p" fontSize="0.75rem">
-            {value1} - {value2}
-          </TextHolder>
-        </Box>
-      )}
-    </Box>
-  );
-};
-
-const AddButtonHolder = ({ task }) => {
-  return (
-    <Box>
-      <Button
-        variant="outlined"
-        size="medium"
-        textTransform="capitalize"
-        borderRadius={0}
-        disabled={!task}
-        type="submit"
-      >
-        Add
-      </Button>
     </Box>
   );
 };

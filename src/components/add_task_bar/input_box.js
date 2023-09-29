@@ -30,6 +30,7 @@ const Content = ({ task, setTask }) => {
     >
       <input
         type="text"
+        maxLength={65}
         placeholder="Add a task"
         value={task}
         autoComplete="on"
@@ -39,6 +40,10 @@ const Content = ({ task, setTask }) => {
           border: "none",
           outline: "none",
           background: "none",
+          fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+            "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+            sans-serif`,
+          fontSize: "0.928rem",
         }}
       />
     </Box>

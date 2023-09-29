@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import TaskSidebarContentTaskHolder from "./content_task_holder";
 import TaskSidebarContentOptionsHolder from "./content_options_holder";
 
-const TaskAndOptionsHolder = () => {
+const TaskAndOptionsHolder = ({ task }) => {
   return (
     <Box
       sx={{
@@ -14,8 +14,8 @@ const TaskAndOptionsHolder = () => {
         gap: "10px",
       }}
     >
-      <TaskSidebarContentTaskHolder />
-      <TaskSidebarContentOptionsHolder />
+      <TaskSidebarContentTaskHolder task={task} />
+      <TaskSidebarContentOptionsHolder task={task} />
     </Box>
   );
 };
