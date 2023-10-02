@@ -38,10 +38,10 @@ const Main = (props) => {
   };
 
   // conditions check
-  const showMobileSidebar = !desktopScreen && isMobileSidebarOpen;
-  const showDesktopSidebar = desktopScreen && isDesktopSidebarOpen;
-  const showMobileTaskSidebar = !desktopScreen && isMobileTaskSidebarOpen;
-  const showDesktopTaskSidebar = desktopScreen && isDesktopTaskSidebarOpen;
+  // const showMobileSidebar = !desktopScreen && isMobileSidebarOpen;
+  // const showDesktopSidebar = desktopScreen && isDesktopSidebarOpen;
+  // const showMobileTaskSidebar = !desktopScreen && isMobileTaskSidebarOpen;
+  // const showDesktopTaskSidebar = desktopScreen && isDesktopTaskSidebarOpen;
 
   return (
     <Box
@@ -51,26 +51,26 @@ const Main = (props) => {
         justifyContent: "center",
       }}
     >
-      {showMobileSidebar && (
+      {!desktopScreen && isMobileSidebarOpen && (
         <MobileSidebar
           isMobileSidebarOpen={isMobileSidebarOpen}
           toggleMobileSidebar={toggleMobileSidebar}
         />
       )}
-      {showDesktopSidebar && <DesktopSidebar />}
+      {desktopScreen && isDesktopSidebarOpen && <DesktopSidebar />}
       <Content
         openDesktopTaskSidebar={openDesktopTaskSidebar}
         toggleMobileTaskSidebar={toggleMobileTaskSidebar}
         setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
       />
-      {showMobileTaskSidebar && (
+      {!desktopScreen && isMobileTaskSidebarOpen && (
         <MobileTaskSidebar
           isMobileTaskSidebarOpen={isMobileTaskSidebarOpen}
           toggleMobileTaskSidebar={toggleMobileTaskSidebar}
           setIsMobileTaskSidebarOpen={setIsMobileTaskSidebarOpen}
         />
       )}
-      {showDesktopTaskSidebar && (
+      {desktopScreen && isDesktopTaskSidebarOpen && (
         <DesktopTaskSidebar
           setIsDesktopTaskSidebarOpen={setIsDesktopTaskSidebarOpen}
         />
